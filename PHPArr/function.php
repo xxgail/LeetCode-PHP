@@ -206,18 +206,9 @@ function restoreIpAddresses($s) { //todo: 做不出来
  */
 function numRabbits($answers) {
     $new_arr = array_count_values($answers);
-    $new_arr1 = array_keys($new_arr);
-//    return $new_arr1;
-    rsort($new_arr1);
     $data = 0;
-    if($new_arr[$new_arr1[0]] < $new_arr1[0]){
-        $data += $new_arr1[0] + 1;
-    }else{
-        $data += $new_arr[$new_arr1[0]] * $new_arr1[0];
+    foreach ($new_arr as $k => $value){
+        $data += ceil($value/($k + 1 )) * ($k + 1);
     }
-    for($i = 1; $i < count($new_arr); $i++){
-        $data += $new_arr[$new_arr1[$i]] + 1;
-    }
-
     return $data;
 }
