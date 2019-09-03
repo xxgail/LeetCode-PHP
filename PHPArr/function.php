@@ -194,3 +194,30 @@ function restoreIpAddresses($s) { //todo: 做不出来
 // 123 4 567 891
 // 12 34 567 891
 // 1 234 567 891
+
+/**
+ * @Time: 2019/9/3 23:02
+ * @DESC: 781
+ * 森林中，每个兔子都有颜色。其中一些兔子（可能是全部）告诉你还有多少其他的兔子和自己有相同的颜色。
+ * 我们将这些回答放在 answers 数组里。
+ * 返回森林中兔子的最少数量。
+ * @param $answers
+ * @return float|int
+ */
+function numRabbits($answers) {
+    $new_arr = array_count_values($answers);
+    $new_arr1 = array_keys($new_arr);
+//    return $new_arr1;
+    rsort($new_arr1);
+    $data = 0;
+    if($new_arr[$new_arr1[0]] < $new_arr1[0]){
+        $data += $new_arr1[0] + 1;
+    }else{
+        $data += $new_arr[$new_arr1[0]] * $new_arr1[0];
+    }
+    for($i = 1; $i < count($new_arr); $i++){
+        $data += $new_arr[$new_arr1[$i]] + 1;
+    }
+
+    return $data;
+}
