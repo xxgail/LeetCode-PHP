@@ -256,5 +256,58 @@ function plusOne($digits) {
  * @param $b
  */
 function addBinary($a, $b) {
+    $len = strlen($a) - strlen($b);
+    $two = 0;
+    if($len > 0){
+        $two = substr($a,0,$len);
+        $a = substr($a,$len);
+    }elseif($len < 0){
+        $len = -1 * $len;
+        $two = substr($b,0,$len);
+        $b = substr($b,$len);
+    }
+//    $one_data = bindec($a) + bindec($b);
+    $a = str_split($a);
+    $b = str_split($b);
+    for ($i = count($a)-1; $i >= 0; $i--){
+//        if($digits[$i] + 1 > 9){
+//            $digits[$i] = 0;
+//            continue;
+//        }else{
+//            $digits[$i] += 1;
+//            break;
+//        }
 
+        $one_data[$i] = $a[$i] + $b[$i];
+        if($one_data[$i] < 2){
+            $one_data[$i] = $a[$i] + $b[$i];
+            break;
+        }else{
+            $one_data[$i] = 0;
+            $a[$i-1] += 1;
+            if($i == 0){
+                array_unshift($one_data,1);
+            }
+            continue;
+        }
+    }
+
+    return $one_data;
+    $one_data = decbin($one_data);
+    $one_str = (string)$one_data;
+    return $one_str;
+    $two_str = '';
+    if($two){
+        if(strlen($one_str) > strlen($a)){
+            $one_str = substr($one_str,1);
+//            return $one_str;
+            $two_data = bindec($two) + 1;
+            $two_str = decbin($two_data);
+        }else{
+            $two_str = $two;
+        }
+    }
+
+    $data = $two_str.$one_str;
+    return $data;
 }
