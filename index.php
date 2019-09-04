@@ -6,6 +6,8 @@ include 'PHPArr/function.php';
 //$data = heightChecker([1,2,1,2,1,1,1,2,1]);
 //$data = reverseWords("the sky is blue");
 //$data = restoreIpAddresses('999');
-$data = numRabbits([10,10,10]);
+//$data = numRabbits([10,10,10]);
+//$data = plusOne([9,9,9]);
+$data = addBinary('1010','1011');
 print_r($data);
 
