@@ -133,67 +133,9 @@ function heightChecker($heights) {
     return $a;
 }
 
-/**
- * @Time: 2019/9/3 17:10
- * @DESC: 151
- * 给定一个字符串，逐个翻转字符串中的每个单词。
- * @param $s
- * @return string
- */
-function reverseWords($s) {
-    $s_arr = explode(' ',$s);
-    $new_data = [];
-    foreach($s_arr as $v){
-        if($v){
-            $new_data[] = $v; // 去掉空格
-        }
-    }
-    $new_data = array_reverse($new_data); // 翻转
-    return implode(' ',$new_data);
-}
 
-/**
- * @Time: 2019/9/3 18:16
- * @DESC: 93
- * 给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。
- * 示例:
- * 输入: "25525511135"
- * 输出: ["255.255.11.135", "255.255.111.35"]
- * @param $s
- * @return array|string
- */
-function restoreIpAddresses($s) { //todo: 做不出来
-    $ip = '';
-    if($s < 1111 || $s>255255255255){
-        return [];
-    }
 
-    $ip1 = substr($s,0,3);
-    $surplus = substr($s,3);
-    if($surplus > 111){
 
-    }
-
-//    if(strlen($s) == 12){
-//        $s_arr = str_split($s,3);
-//        foreach ($s_arr as $item) {
-//            if($item > 255){
-//                return [];
-//            }
-//            $ip .= $item.'.';
-//        }
-//    }
-    return rtrim($ip,'.');
-}
-
-// 123 456 789 1
-// 123 456 78 91
-// 123 456 7 891
-// 123 45 678 91
-// 123 45 67 891
-// 123 4 567 891
-// 12 34 567 891
-// 1 234 567 891
 
 /**
  * @Time: 2019/9/3 23:02
@@ -248,66 +190,69 @@ function plusOne($digits) {
 }
 
 /**
- * @Time: 2019/9/4 18:04
- * @DESC: 二进制求和
- * 给定两个二进制字符串，返回他们的和（用二进制表示）。
- * 输入为非空字符串且只包含数字 1 和 0。
- * @param $a
- * @param $b
+ * @Time: 2019/9/5 18:30
+ * @DESC:
+ * 给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。
+ * 函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。
+ * 说明:
+ * 返回的下标值（index1 和 index2）不是从零开始的。
+ * 你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。
+ * @param $numbers
+ * @param $target
+ * @return array
  */
-function addBinary($a, $b) {
-    $len = strlen($a) - strlen($b);
-    $two = 0;
-    if($len > 0){
-        $two = substr($a,0,$len);
-        $a = substr($a,$len);
-    }elseif($len < 0){
-        $len = -1 * $len;
-        $two = substr($b,0,$len);
-        $b = substr($b,$len);
-    }
-//    $one_data = bindec($a) + bindec($b);
-    $a = str_split($a);
-    $b = str_split($b);
-    for ($i = count($a)-1; $i >= 0; $i--){
-//        if($digits[$i] + 1 > 9){
-//            $digits[$i] = 0;
-//            continue;
-//        }else{
-//            $digits[$i] += 1;
-//            break;
-//        }
+function twoSum($numbers, $target) {
 
-        $one_data[$i] = $a[$i] + $b[$i];
-        if($one_data[$i] < 2){
-            $one_data[$i] = $a[$i] + $b[$i];
+    for($i = 0; $i < count($numbers); $i++){
+        if($numbers[$i+1] == $numbers[$i]){
             break;
-        }else{
-            $one_data[$i] = 0;
-            $a[$i-1] += 1;
-            if($i == 0){
-                array_unshift($one_data,1);
+        }
+        $surplus = $target - $numbers[$i];
+        if($surplus >= 0){
+            for ($j = $i+1; $j < count($numbers); $j++){
+                if($numbers[$j] == $surplus){
+                    return [$i+1,$j+1];
+                }
             }
-            continue;
-        }
-    }
-
-    return $one_data;
-    $one_data = decbin($one_data);
-    $one_str = (string)$one_data;
-    return $one_str;
-    $two_str = '';
-    if($two){
-        if(strlen($one_str) > strlen($a)){
-            $one_str = substr($one_str,1);
-//            return $one_str;
-            $two_data = bindec($two) + 1;
-            $two_str = decbin($two_data);
         }else{
-            $two_str = $two;
+            break;
         }
     }
 
-    $data = $two_str.$one_str;
-    return $data;
+    return [];
+    for($i = 0; $i < count($numbers); $i++){
+        $surplus = $target - $numbers[$i];
+        for ($j = 0; $j < count($numbers); $j++){
+            if($numbers[$j] == $surplus || $i != $j){
+                $data = [$i+1, $j+1];
+                return $data;
+            }
+            if($numbers[$i] > $surplus){
+                break;
+            }
+        }
+//        $len = count($numbers);
+//        $lower = 0;
+//        $high = $len - 1;
+//        // 最低点比最高点大就退出
+//        while ($lower <= $high) {
+//            // 以中间点作为参照点比较
+//            $middle = intval(($lower + $high) / 2);
+//            if ($numbers[$middle] > $surplus) {
+//                // 查找数比参照点小，舍去右边
+//                $high = $middle - 1;
+//            } else if ($numbers[$middle] < $surplus) {
+//                // 查找数比参照点大，舍去左边
+//                $lower = $middle + 1;
+//            } else {
+//                // 查找数与参照点相等，则找到返回
+//                $one = $i;
+//                if($one != $middle){
+//                    $data = [$one+1, $middle+1];
+//                    return $data;
+//                }
+//            }
+//        }
+    }
+    return [];
 }
