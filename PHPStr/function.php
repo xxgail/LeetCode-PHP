@@ -69,8 +69,9 @@ function restoreIpAddresses($s) { //todo: 做不出来
  * 输入为非空字符串且只包含数字 1 和 0。
  * @param $a
  * @param $b
+ * @return string
  */
-function addBinary($a, $b) {
+function addBinary($a, $b) { //todo: 做不出来
     $len = strlen($a) - strlen($b);
     $two = 0;
     if($len > 0){

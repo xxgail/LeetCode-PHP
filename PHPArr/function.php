@@ -202,11 +202,13 @@ function plusOne($digits) {
  * @return array
  */
 function twoSum($numbers, $target) {
-
     for($i = 0; $i < count($numbers); $i++){
-        if($numbers[$i+1] == $numbers[$i]){
-            break;
+        if($i > 0){
+            if($numbers[$i] == $numbers[$i-1]){
+                continue; // continue 是指跳出本次for循环。break是指结束本地for循环
+            }
         }
+
         $surplus = $target - $numbers[$i];
         if($surplus >= 0){
             for ($j = $i+1; $j < count($numbers); $j++){
@@ -218,41 +220,35 @@ function twoSum($numbers, $target) {
             break;
         }
     }
+    return [];
+}
 
-    return [];
-    for($i = 0; $i < count($numbers); $i++){
-        $surplus = $target - $numbers[$i];
-        for ($j = 0; $j < count($numbers); $j++){
-            if($numbers[$j] == $surplus || $i != $j){
-                $data = [$i+1, $j+1];
-                return $data;
-            }
-            if($numbers[$i] > $surplus){
-                break;
-            }
-        }
-//        $len = count($numbers);
-//        $lower = 0;
-//        $high = $len - 1;
-//        // 最低点比最高点大就退出
-//        while ($lower <= $high) {
-//            // 以中间点作为参照点比较
-//            $middle = intval(($lower + $high) / 2);
-//            if ($numbers[$middle] > $surplus) {
-//                // 查找数比参照点小，舍去右边
-//                $high = $middle - 1;
-//            } else if ($numbers[$middle] < $surplus) {
-//                // 查找数比参照点大，舍去左边
-//                $lower = $middle + 1;
-//            } else {
-//                // 查找数与参照点相等，则找到返回
-//                $one = $i;
-//                if($one != $middle){
-//                    $data = [$one+1, $middle+1];
-//                    return $data;
-//                }
-//            }
-//        }
+/**
+ * @Time: 2019/9/6 11:54
+ * @DESC: 350
+ * 给定两个数组，编写一个函数来计算它们的交集。
+ * 说明：
+ * 输出结果中每个元素出现的次数，应与元素在两个数组中出现的次数一致。
+ * 我们可以不考虑输出结果的顺序
+ * @param $nums1
+ * @param $nums2
+ * @return array
+ */
+function intersect($nums1, $nums2) {
+    $result = [];
+    if(count($nums1) == 0){
+        return $result;
     }
-    return [];
+    for ($i = 0; $i < count($nums1); $i++){
+        if(count($nums2) == 0){
+            break;
+        }
+        if(in_array($nums1[$i],$nums2)){
+            $result[] = $nums1[$i];
+            unset($nums2[array_search($nums1[$i],$nums2)]);
+//            $nums2 = array_diff($nums2,[$nums1[$i]]);
+            var_dump($nums2);
+        }
+    }
+    return $result;
 }
