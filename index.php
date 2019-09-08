@@ -2,7 +2,16 @@
 include 'PHPArr/function.php';
 require 'PHPStr/function.php';
 include "PHPLinkedList/function.php";
+include "PHPTreeNode/TreeNode.php";
 
+$root = new TreeNode(1);
+$root->left = new TreeNode(null);
+$root->right = new TreeNode(2);
+$root->right->left = new TreeNode(3);
+//$data = preorderTraversal($root);
+$data = inorderTraversal($root);
+//$data = postorderTraversal($root);
+print_r($data);
 //$data = constructArray(5,4);
 //$data = singleNumber([2,2,1,3,3,4,4]);
 //$data = heightChecker([1,2,1,2,1,1,1,2,1]);
@@ -29,9 +38,9 @@ include "PHPLinkedList/function.php";
 //$data = intersect($nums1,$nums2);
 //print_r($data);
 
-$link = new Solution();
-$head = [1,2,6,3,4,5,6];
-$val = 6;
-$data = $link->removeElements($head,$val);
-print_r($data);
+//$link = new Solution();
+//$head = [1,2,6,3,4,5,6];
+//$val = 6;
+//$data = $link->removeElements($head,$val);
+//print_r($data);
 
