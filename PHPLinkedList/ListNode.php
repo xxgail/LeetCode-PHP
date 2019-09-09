@@ -1,8 +1,14 @@
 <?php
-//class ListNode {
-//   public $val = 0;
-//   public $next = null;
-//   public function __construct($val) {
-//       $this->val = $val;
-//   }
-//}
+/**
+ * Class ListNode
+ * ————————————————————————————————
+ */
+class ListNode {
+    public $data;   // 节点数据
+    public $next;   // 下一节点
+
+    public function __construct($data) {
+        $this->data = $data;
+        $this->next = NULL;
+    }
+}
