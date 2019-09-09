@@ -14,8 +14,8 @@ $root->right->right = new TreeNode(2);
 //$data = inorderTraversal($root);
 //$data = postorderTraversal($root);
 //$data = levelOrder($root);
-$data = isSymmetric($root);
-var_dump($data);
+//$data = isSymmetric($root);
+//var_dump($data);
 //$data = constructArray(5,4);
 //$data = singleNumber([2,2,1,3,3,4,4]);
 //$data = heightChecker([1,2,1,2,1,1,1,2,1]);
@@ -48,3 +48,6 @@ var_dump($data);
 //$data = $link->removeElements($head,$val);
 //print_r($data);
 
+$n = [1,2,3,4,5,6,7,8,9];
+$data = lastRemaining($n);
+print_r($data);

@@ -258,3 +258,22 @@ function intersect($nums1, $nums2) {
     }
     return $result;
 }
+
+
+function lastRemaining($n) {
+    $data = [];
+    while (count($n) > 2){
+        for ($i = 0; $i < count($n); $i++){
+            if($i % 2 != 0){
+                $data[] = $n[$i];
+            }
+        }
+        return $data;
+        for ($i = count($i) - 1; $i >= 0; $i--){
+            if($i % 2 == 0){
+                array_diff_key($n,[$i]);
+            }
+        }
+    }
+    return $n;
+}
