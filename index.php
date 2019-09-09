@@ -48,6 +48,6 @@ $root->right->right = new TreeNode(2);
 //$data = $link->removeElements($head,$val);
 //print_r($data);
 
-$n = [1,2,3,4,5,6,7,8,9];
+$n = 4;
 $data = lastRemaining($n);
 print_r($data);

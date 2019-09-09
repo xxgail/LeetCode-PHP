@@ -261,19 +261,18 @@ function intersect($nums1, $nums2) {
 
 
 function lastRemaining($n) {
-    $data = [];
-    while (count($n) > 2){
+
+//    #---- 这是生成数组然后便利的解法，但是如果$n的值太大会报溢出内存的错误。
+    $n = range(1,$n);
+    while (count($n) > 1){
+        $data = [];
         for ($i = 0; $i < count($n); $i++){
             if($i % 2 != 0){
                 $data[] = $n[$i];
             }
         }
-        return $data;
-        for ($i = count($i) - 1; $i >= 0; $i--){
-            if($i % 2 == 0){
-                array_diff_key($n,[$i]);
-            }
-        }
+        $n = $data;
+        $n = array_reverse($n);
     }
-    return $n;
+    return $n[0];
 }
