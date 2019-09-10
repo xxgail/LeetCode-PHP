@@ -271,8 +271,10 @@ function intersect($nums1, $nums2) {
  * @return mixed
  */
 function lastRemaining($n) {
-
-//    #---- 这是生成数组然后便利的解法，但是如果$n的值太大会报溢出内存的错误。
+    # ---- 找规律，用递归来解决，但是不知道为什么显示超出内存
+    # 来源：https://blog.csdn.net/afei__/article/details/83689502
+    return $n == 1 ? 1 : 2 * ($n/2 + 1 - lastRemaining($n/2));
+//    #---- 这是生成数组然后遍历的解法，但是如果$n的值太大会报溢出内存的错误。
     $n = range(1,$n);
     while (count($n) > 1){
         $data = [];
@@ -281,8 +283,55 @@ function lastRemaining($n) {
                 $data[] = $n[$i];
             }
         }
-        $n = $data;
-        $n = array_reverse($n);
+        $n = array_reverse($data);
     }
     return $n[0];
+}
+
+function jiecheng($n){
+    if($n > 1){
+        return $n * jiecheng($n-1);
+    }else{
+        return $n;
+    }
+}
+
+/**
+ * @Time: 2019/9/10 16:33
+ * @DESC: 47
+ * 给定一个可包含重复数字的序列，返回所有不重复的全排列。
+ * @param $nums
+ * @param array $data
+ * @return array
+ */
+function permuteUnique($nums,$data = []) {
+
+    if(count($nums) == 1){
+        array_push($data,$nums[0]);
+        var_dump($data);
+    }  else {
+        for ($i = 0; $i < count($nums); $i++) {
+            $data = [];
+            $tmp = $nums[0];
+            $nums[0] = $nums[$i];
+            $nums[$i] = $tmp;
+            $data[] = $nums[0];
+            permuteUnique(array_slice($nums, 1),$data);
+        }
+    }
+    return $data;
+
+//    return $data;
+//    $cnt = count($arr);
+//    if($cnt == 1){
+//        echo $str . $arr[0] . "\n<br>";
+//    }  else {
+//        for ($i = 0; $i < count($arr); $i++) {
+//            $tmp = $arr[0];
+//            $arr[0] = $arr[$i];
+//            $arr[$i] = $tmp;
+//            permuteUnique(array_slice($arr, 1), $str . $arr[0]);
+//        }
+//    }
+//    return $str;
 }

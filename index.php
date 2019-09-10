@@ -48,6 +48,10 @@ $root->right->right = new TreeNode(2);
 //$data = $link->removeElements($head,$val);
 //print_r($data);
 
-$n = 4;
-$data = lastRemaining($n);
+//$n = 15;
+//$data = lastRemaining($n);
+//print_r($data);
+
+
+$data = permuteUnique([1,2,3],[]);
 print_r($data);
