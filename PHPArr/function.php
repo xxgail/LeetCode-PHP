@@ -274,7 +274,7 @@ function lastRemaining($n) {
     # ---- 找规律，用递归来解决，但是不知道为什么显示超出内存
     # 来源：https://blog.csdn.net/afei__/article/details/83689502
     return $n == 1 ? 1 : 2 * ($n/2 + 1 - lastRemaining($n/2));
-//    #---- 这是生成数组然后遍历的解法，但是如果$n的值太大会报溢出内存的错误。
+    #---- 这是生成数组然后遍历的解法，但是如果$n的值太大会报溢出内存的错误。
     $n = range(1,$n);
     while (count($n) > 1){
         $data = [];
@@ -288,11 +288,33 @@ function lastRemaining($n) {
     return $n[0];
 }
 
-function jiecheng($n){
-    if($n > 1){
-        return $n * jiecheng($n-1);
-    }else{
-        return $n;
+
+/**
+ * @Time: 2019/9/11 13:47
+ * @DESC: 46
+ * 给定一个没有重复数字的序列，返回其所有可能的全排列。
+ * @param $nums
+ * @return array
+ */
+function permute($nums){
+    $result = [];
+    permuteFunc($nums,[],$result);
+    return $result;
+}
+
+function permuteFunc($nums,$data,&$result) {
+    if(count($nums) == count($data)){
+        array_push($result,$data);
+        return $result;
+    }
+    for ($i = 0; $i < count($nums); $i++){
+        if(in_array($nums[$i],$data)){
+            continue;
+        }
+
+        array_push($data,$nums[$i]);
+        permuteFunc($nums,$data,$result);
+        array_pop($data);
     }
 }
 
@@ -301,37 +323,84 @@ function jiecheng($n){
  * @DESC: 47
  * 给定一个可包含重复数字的序列，返回所有不重复的全排列。
  * @param $nums
- * @param array $data
  * @return array
  */
-function permuteUnique($nums,$data = []) {
+function permuteUnique($nums){
+    if(empty($nums)){
+        return [];
+    }
+    $res = [];
+    permuteUniqueFunc($nums,0,[],$res);
+    return $res;
+}
 
-    if(count($nums) == 1){
-        array_push($data,$nums[0]);
-        var_dump($data);
-    }  else {
-        for ($i = 0; $i < count($nums); $i++) {
-            $data = [];
-            $tmp = $nums[0];
-            $nums[0] = $nums[$i];
-            $nums[$i] = $tmp;
-            $data[] = $nums[0];
-            permuteUnique(array_slice($nums, 1),$data);
+function permuteUniqueFunc($nums,$index,$current,&$res)
+{
+    $len = count($nums);
+    if($index >= $len && !in_array($current,$res)){
+        $res[] = $current;
+        return;
+    }
+    for($i = $index;$i < $len;$i++){
+        $current[$index] = $nums[$i];
+        [$nums[$i],$nums[$index]] = [$nums[$index],$nums[$i]];
+        permuteUniqueFunc($nums,$index+1,$current,$res);
+    }
+}
+
+
+/**
+ * @Time: 2019/9/11 15:37
+ * @DESC: 992
+ * 给定一个正整数数组 A，如果 A 的某个子数组中不同整数的个数恰好为 K，则称 A 的这个连续、不一定独立的子数组为好子数组。
+ * （例如，[1,2,3,1,2] 中有 3 个不同的整数：1，2，以及 3。）
+ * 返回 A 中好子数组的数目。
+ *
+ * 示例 1：
+ * 输出：A = [1,2,1,2,3], K = 2
+ * 输入：7
+ * 解释：恰好由 2 个不同整数组成的子数组：[1,2], [2,1], [1,2], [2,3], [1,2,1], [2,1,2], [1,2,1,2].
+ * @param $A
+ * @param $K
+ * @return int
+ */
+function subarraysWithKDistinct($A, $K) {
+
+    # ---------- TODO：超出内存
+    $result = 0;
+    for ($i = 0; $i <= count($A) - $K; $i++){
+        $son_class = array_slice($A, $i,$K);
+        $son_class_unique = $son_class;
+        $son_class_unique = array_unique($son_class_unique);
+        $length = count($son_class_unique);
+        $son_class_length = count($son_class);
+        if(count($son_class_unique) < $K){
+            for ($j = $i + $K;$j < count($A); $j++){
+                if($length < $K){
+                    $son_class = array_slice($A,$i,$son_class_length);
+                    if(!in_array($A[$j],$son_class)){
+                        $son_class_length ++;
+                        $length ++;
+                    }else{
+                        $son_class_length ++;
+                    }
+                }else{
+                    break 1;
+                }
+            }
+        }
+        if($length == $K){
+            $result ++;
+            for ($j = $i + $son_class_length;$j < count($A); $j++) {
+                $son_class = array_slice($A,$i,$son_class_length);
+                $son_class = array_unique($son_class);
+                if (in_array($A[$j], $son_class)) {
+                    $result ++;
+                } else {
+                    break 1;
+                }
+            }
         }
     }
-    return $data;
-
-//    return $data;
-//    $cnt = count($arr);
-//    if($cnt == 1){
-//        echo $str . $arr[0] . "\n<br>";
-//    }  else {
-//        for ($i = 0; $i < count($arr); $i++) {
-//            $tmp = $arr[0];
-//            $arr[0] = $arr[$i];
-//            $arr[$i] = $tmp;
-//            permuteUnique(array_slice($arr, 1), $str . $arr[0]);
-//        }
-//    }
-//    return $str;
+    return $result;
 }
