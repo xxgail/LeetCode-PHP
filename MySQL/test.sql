@@ -22,3 +22,22 @@ UPDATE salary SET sex =
 
 
 # 183.
+SELECT c.Name Customers From Customers c LEFT JOIN Orders o ON c.Id = o.CustomerId WHERE o.Id is null;
+
+
+# 596.
+# 有一个courses 表 ，有: student (学生) 和 class (课程)。
+# 请列出所有超过或等于5名学生的课。
+SELECT class FROM courses GROUP BY class having COUNT(DISTINCT student) >= 5;
+
+
+# 177.
+# 编写一个 SQL 查询，获取 Employee 表中第 n 高的薪水（Salary）。
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+    SET N = N-1;
+    RETURN (
+        # Write your MySQL query statement below.
+        SELECT DISTINCT Salary FROM Employee Order By Salary DESC LIMIT 1 OFFSET N
+    );
+END
