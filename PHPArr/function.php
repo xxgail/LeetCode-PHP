@@ -404,3 +404,43 @@ function subarraysWithKDistinct($A, $K) {
     }
     return $result;
 }
+
+/**
+ * @Time: 2019/9/14 22:04
+ * @DESC: 217
+ * 给定一个整数数组，判断是否存在重复元素。
+ * 如果任何值在数组中出现至少两次，函数返回 true。
+ * 如果数组中每个元素都不相同，则返回 false。
+ * @param $nums
+ * @return bool
+ */
+function containsDuplicate($nums) {
+    for ($i = 0; $i < count($nums); $i++){
+        if(array_search($nums[$i],$nums) != $i){
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * @Time: 2019/9/14 22:44
+ * @DESC: 387
+ * 给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
+ * @param $s
+ * @return int|string
+ */
+function firstUniqChar($s) {
+    if($s){
+        $s_arr = str_split($s);
+        foreach ($s_arr as $k => $v){
+            if(strpos($s,$v) == strrpos($s,$v)){
+                return $k;
+            }
+        }
+    }
+    return -1;
+}
+
+$data = firstUniqChar('leetlcode');
+var_dump($data);

@@ -41,3 +41,13 @@ BEGIN
         SELECT DISTINCT Salary FROM Employee Order By Salary DESC LIMIT 1 OFFSET N
     );
 END
+
+
+# 176.
+# 编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary)。如果不存在就返回null
+SELECT (SELECT DISTINCT Salary FROM Employee ORDER BY Salary DESC LIMIT 1 OFFSET 1 )
+as SecondHighestSalary;
+
+# 175.
+# 组合两个表
+SELECT FirstName,LastName,City,State FROM Person p LEFT JOIN Address a ON p.PersonId  = a.PersonId;
