@@ -1,15 +1,19 @@
 <?php
 include 'PHPArr/function.php';
 require 'PHPStr/function.php';
-include "PHPLinkedList/function.php";
+//include "PHPLinkedList/function.php";
 include "PHPTreeNode/TreeNode.php";
 include "PHPTreeNode/function.php";
 
-//$root = new TreeNode(0);
-//$root->left = new TreeNode(1);
-//$root->left->left = new TreeNode(1);
-//$root->right = new TreeNode(2);
-//$root->right->right = new TreeNode(2);
+//$root = new TreeNode(10);
+//$root->left = new TreeNode(5);
+//$root->left->left = new TreeNode(3);
+//$root->left->right = new TreeNode(7);
+//$root->right = new TreeNode(15);
+//$root->right->right = new TreeNode(18);
+//$data = rangeSumBST($root,7,15);
+$data = toLowerCase('heLLo');
+print_r($data);
 //$data = preorderTraversal($root);
 //$data = inorderTraversal($root);
 //$data = postorderTraversal($root);
@@ -66,5 +70,8 @@ include "PHPTreeNode/function.php";
 //$K = 20;
 //$data = subarraysWithKDistinct($A,$K);
 //print_r($data);
-$data = containsDuplicate([1,2,3,3]);
-print_r($data);
+//$data = containsDuplicate([1,2,3,3]);
+//print_r($data);
+//$data = numJewelsInStones('aA','aAAcccc');
+//print_r($data);
+

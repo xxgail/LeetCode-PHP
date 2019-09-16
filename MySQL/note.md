@@ -55,6 +55,6 @@
 - 详情：服务器返回无效时区。转到“高级”选项卡并手动设置“serverTimezone”属性。
 - 处理方法：
     ```mysql
-    mysql> show variables like '%time_zone%';
-    mysql> set global time_zone='+8:00';
+      show variables like '%time_zone%';
+      set global time_zone='+8:00';
     ```
