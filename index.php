@@ -12,8 +12,8 @@ include "PHPTreeNode/function.php";
 //$root->right = new TreeNode(15);
 //$root->right->right = new TreeNode(18);
 //$data = rangeSumBST($root,7,15);
-$data = toLowerCase('heLLo');
-print_r($data);
+//$data = divide(10,3);
+//print_r($data);
 //$data = preorderTraversal($root);
 //$data = inorderTraversal($root);
 //$data = postorderTraversal($root);
@@ -75,3 +75,7 @@ print_r($data);
 //$data = numJewelsInStones('aA','aAAcccc');
 //print_r($data);
 
+$A = 'abcaa';
+$B = 'abcbb';
+$data = buddyStrings($A,$B);
+var_dump($data);
