@@ -487,19 +487,67 @@ function arraysIntersection($arr1, $arr2, $arr3) {
     return $array;
 }
 
+/**
+ * @Time: 2019/10/9 11:42
+ * @DESC: 804.简单
+ * 国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如: "a" 对应 ".-", "b" 对应 "-...", "c" 对应 "-.-.", 等等。
+ * 为了方便，所有26个英文字母对应摩尔斯密码表如下：
+ * [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."。
+ * 给定一个单词列表，每个单词可以写成每个字母对应摩尔斯密码的组合。
+ * 例如，"cab" 可以写成 "-.-..--..."，(即 "-.-." + "-..." + ".-"字符串的结合)。
+ * 我们将这样一个连接过程称作单词翻译。
+ * 返回我们可以获得所有词不同单词翻译的数量。
+ * @param $words
+ * @return int
+ */
 function uniqueMorseRepresentations($words) {
     $dict = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
     $new_data = [];
     foreach ($words as $word) {
-        $word = str_split($word);
-        if($word){
-            $new_word = '';
-            foreach ($word as $item) {
-                $new_word .= $dict[ord($item)-97];
-            }
-            $new_data[] = $new_word;
+        $new_word = '';
+        for ($i = 0; $i < strlen($word); $i++){
+            $new_word .= $dict[ord($word[$i])-97]; # ord 转换为ASCII码
         }
+        $new_data[] = $new_word;
     }
     $new_data = array_unique($new_data);
     return count($new_data);
+}
+
+/**
+ * @Time: 2019/10/9 13:27
+ * @DESC: 461. 简单
+ * 两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。
+ * 给出两个整数 x 和 y，计算它们之间的汉明距离。
+ * @param $x
+ * @param $y
+ * @return int
+ */
+function hammingDistance($x, $y) {
+    $a = decbin($x ^ $y);
+    $result = 0;
+    for ($i = 0; $i < strlen($a); $i++){
+        if($a[$i] == 1){
+            $result ++;
+        }
+    }
+    return $result;
+}
+
+$da = hammingDistance(1,4);
+var_dump($da);
+
+/**
+ * @Time: 2019/10/9 18:00
+ * @DESC: 942.简单
+ * 给定只含 "I"（增大）或 "D"（减小）的字符串 S ，令 N = S.length。
+ * 返回 [0, 1, ..., N] 的任意排列 A 使得对于所有 i = 0, ..., N-1，都有：
+ * 如果 S[i] == "I"，那么 A[i] < A[i+1]
+ * 如果 S[i] == "D"，那么 A[i] > A[i+1]
+ * @param $S
+ * @return array
+ */
+function diStringMatch($S) { //todo:
+    $N = strlen($S) + 1;
+    return [];
 }
