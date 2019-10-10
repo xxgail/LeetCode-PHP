@@ -534,9 +534,6 @@ function hammingDistance($x, $y) {
     return $result;
 }
 
-$da = hammingDistance(1,4);
-var_dump($da);
-
 /**
  * @Time: 2019/10/9 18:00
  * @DESC: 942.简单
@@ -547,7 +544,70 @@ var_dump($da);
  * @param $S
  * @return array
  */
-function diStringMatch($S) { //todo:
-    $N = strlen($S) + 1;
-    return [];
+function diStringMatch($S) {
+//    $N = strlen($S);
+    $I = 0;
+    $D = strlen($S);
+    for ($i = 0; $i < strlen($S); $i++){
+        if($S[$i] == 'I'){
+            $data[] = $I;
+            $I ++;
+        }else{
+            $data[] = $D;
+            $D --;
+        }
+    }
+    $data[] = $I;
+    return $data;
 }
+
+/**
+ * @Time: 2019/10/10 14:14
+ * @DESC: 728. 简单
+ * 自除数 是指可以被它包含的每一位数除尽的数。
+ * 例如，128 是一个自除数，因为 128 % 1 == 0，128 % 2 == 0，128 % 8 == 0。
+ * 还有，自除数不允许包含 0 。
+ * 给定上边界和下边界数字，输出一个列表，列表的元素是边界（含边界）内所有的自除数。
+ * @param $left
+ * @param $right
+ * @return array
+ */
+function selfDividingNumbers($left, $right) {
+    $data = [];
+    for ($i = $left; $i <= $right; $i++){
+        $i_str = (string)$i;
+        for ($j = 0; $j < strlen($i_str); $j++){
+            if($i_str[$j] == 0 || $i % $i_str[$j] != 0){
+                continue 2;
+            }
+        }
+        $data[] = $i;
+    }
+    return $data;
+}
+
+/**
+ * @Time: 2019/10/10 17:04
+ * @DESC: 1002. 简单
+ * 给定仅有小写字母组成的字符串数组 A，返回列表中的每个字符串中都显示的全部字符（包括重复字符）组成的列表。
+ * @param $A
+ * @return array
+ */
+function commonChars($A) {
+    $data = [];
+    for ($j = 0; $j < strlen($A[0]); $j++){
+        for($i = 1; $i < count($A); $i++){
+            if(strpos($A[$i],$A[0][$j]) === false){
+                continue 2;
+            }else{
+                $location = strpos($A[$i],$A[0][$j]); # 查找位置
+                $A[$i] = substr_replace($A[$i],"",$location,1); # 删除
+            }
+        }
+        $data[] = $A[0][$j];
+    }
+    return $data;
+}
+
+$da = commonChars(["bella","label","roller"]);
+var_dump($da);

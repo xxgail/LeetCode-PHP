@@ -1,17 +1,17 @@
 <?php
-include 'PHPArr/function.php';
+//include 'PHPArr/function.php';
 require 'PHPStr/function.php';
 //include "PHPLinkedList/function.php";
 include "PHPTreeNode/TreeNode.php";
 include "PHPTreeNode/function.php";
 
-//$root = new TreeNode(10);
-//$root->left = new TreeNode(5);
-//$root->left->left = new TreeNode(3);
-//$root->left->right = new TreeNode(7);
-//$root->right = new TreeNode(15);
-//$root->right->right = new TreeNode(18);
-//$data = rangeSumBST($root,7,15);
+$root = new TreeNode(4);
+$root->left = new TreeNode(2);
+$root->left->left = new TreeNode(3);
+$root->left->right = new TreeNode(7);
+$root->right = new TreeNode(15);
+$data = searchBST($root,2);
+var_dump($data);
 //$data = divide(10,3);
 //print_r($data);
 //$data = preorderTraversal($root);
@@ -75,7 +75,7 @@ include "PHPTreeNode/function.php";
 //$data = numJewelsInStones('aA','aAAcccc');
 //print_r($data);
 
-$A = 'abcaa';
-$B = 'abcbb';
-$data = buddyStrings($A,$B);
-var_dump($data);
+//$A = 'abcaa';
+//$B = 'abcbb';
+//$data = buddyStrings($A,$B);
+//var_dump($data);

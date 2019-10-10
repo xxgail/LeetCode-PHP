@@ -327,3 +327,17 @@ function buddyStrings($A, $B) {
     }
     return false;
 }
+
+/**
+ * @Time: 2019/10/10 17:04
+ * @DESC:
+ * 查找补数。
+ * @param $num
+ * @return float|int
+ */
+function findComplement($num) {
+    return pow(2,strlen(decbin($num))) - $num - 1;
+}
+
+$data = findComplement(5);
+var_dump($data);
