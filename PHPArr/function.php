@@ -614,27 +614,30 @@ function commonChars($A) {
  * @DESC: 78. 中等
  * 给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
  * 说明：解集不能包含重复的子集。
+ *
+ * 类似于全排列。
+ * 用到的也是回溯法
  * @param $nums
  * @return array
  */
-function subsets($nums) { // todo
-    $data = [];
-    for($i = 0; $i < count($nums); $i++){
-        for ($j = 1; $j < count($nums)+1-$i; $j++){
-            $arr1 = array_slice($nums,$i,$j);
-            $data[] = $arr1;
-            $son_arr = array_slice($nums,$j+$i+1);
-            for ($k = 0; $k < count($son_arr); $k++){
-                $arr1[] = $son_arr[$k];
-                $data[] = sort($arr1);
-            }
-
-
-        }
-    }
-    $data[] = [];
-    return $data;
+function subsets($nums) {
+    $current=[];
+    $res=[];
+    subsetsFunc($nums,0,$current,$res);
+    return $res;
 }
 
-$da = subsets([3,2,1,4]);
+function subsetsFunc($nums,$index,&$current,&$res)
+{
+    $res[] = $current;
+    for($i=$index;$i<count($nums);$i++){ #
+        $current[] = $nums[$i];
+        subsetsFunc($nums,$i+1,$current,$res);
+        array_pop($current);
+    }
+}
+
+
+
+$da = subsets([3,2,1]);
 var_dump($da);
