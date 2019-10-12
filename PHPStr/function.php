@@ -361,5 +361,31 @@ function lexicalOrder($n) {
     return $data;
 }
 
+function judgeCircle($moves) {
+    $LR = 0;
+    $UD = 0;
+    for($i = 0; $i < strlen($moves); $i++){
+        switch ($moves[$i]){
+            case 'L':
+                $LR ++;
+                break;
+            case 'R':
+                $LR --;
+                break;
+            case 'U':
+                $UD ++;
+                break;
+            case 'D':
+                $UD --;
+                break;
+        }
+    }
+    if($LR == 0 && $UD == 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 $data = lexicalOrder(22);
 var_dump($data);
