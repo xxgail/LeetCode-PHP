@@ -655,6 +655,14 @@ function singleNumberTwo($nums) {
     return $data;
 }
 
+function findDuplicate($nums) {
+    for ($i = 0; $i < count($nums); $i++){
+        if(array_search($nums[$i],$nums) != $i){
+            return $nums[$i];
+        }
+    }
+}
+
 
 $a = "1+1i";
 $b = "1+1i";
