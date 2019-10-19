@@ -672,6 +672,77 @@ function findDuplicate($nums) {
     }
 }
 
+/**
+ * @Time: 2019/10/19 22:32
+ * @DESC: 15. 三数之和。 中等
+ * 给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。
+ * 注意：答案中不可以包含重复的三元组。
+ * @param $nums
+ * @return array
+ */
+function threeSum($nums) {
+    $result = [];
+    sort($nums);
+    for($i = 0; $i < count($nums); $i++){
+        if($i > 0 && $nums[$i] == $nums[$i-1] && $i < count($nums) - 1){
+            continue;// 去重
+        }
 
-$da = findDuplicate([1,2,3,4,3]);
-var_dump($da);
+        // 双指针
+        $left = $i + 1;
+        $right = count($nums) - 1;
+        do{
+            if($left >= $right){
+                break;
+            }
+            $sum = $nums[$i] + $nums[$left] + $nums[$right];
+            if($sum == 0){
+                $result[] = [$nums[$i], $nums[$left], $nums[$right]];
+            }
+
+            if($sum <= 0){
+                while($nums[$left + 1] == $nums[$left] && $left < $right){
+                    $left ++;// 去重
+                }
+                $left ++;
+            }else{
+                while($nums[$right - 1] == $nums[$right] && $left < $right){
+                    $right --;// 去重
+                }
+                $right --;
+            }
+        }while($left < $right);
+    }
+    return $result;
+}
+
+$s1 = [5,1,-4,-10,9,-1,-4,-5,-8,3,1,4,2,-8,-4,3,-4,-5,1,7,8,6,2,8];
+$s2 = [3,0,-2,1,2,-1];
+$data = threeSum($s2);
+print_r($data);
+//$da = twoSum1($s2,5);
+//var_dump($da);
+
+
+/**
+ * @Time: 2019/10/19 22:33
+ * @DESC: 1. 两数之和。简单
+ * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
+ * 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
+ * @param $nums
+ * @param $target
+ * @return array
+ */
+function twoSum1($nums, $target) {
+    $new_nums = [];
+    foreach($nums as $num){
+        $new_nums[] = $target - $num;
+    }
+
+    for($i = 0; $i < count($nums); $i++){
+        $site = array_search($nums[$i],$new_nums);
+        if($site !== false && $site != $i){
+            return [$i,$site];
+        }
+    }
+}
