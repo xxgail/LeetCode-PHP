@@ -717,8 +717,8 @@ function threeSum($nums) {
 }
 
 $s1 = [5,1,-4,-10,9,-1,-4,-5,-8,3,1,4,2,-8,-4,3,-4,-5,1,7,8,6,2,8];
-$s2 = [3,0,-2,1,2,-1];
-$data = threeSum($s2);
+$s2 = [0,-4,1,-5];
+$data = threeSumClosest($s2,0);
 print_r($data);
 //$da = twoSum1($s2,5);
 //var_dump($da);
@@ -745,4 +745,54 @@ function twoSum1($nums, $target) {
             return [$i,$site];
         }
     }
+}
+
+/**
+ * @Time: 2019/10/21 21:23
+ * @DESC: 16. 最接近的三数之和 中等。
+ * 给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。
+ * 类似于第15题
+ * @param $nums
+ * @param $target
+ * @return mixed
+ */
+function threeSumClosest($nums, $target) {
+    sort($nums);
+//    $result = [];
+    $sum = $nums[0] + $nums[1] + $nums[2];
+    $result = $sum;
+    $min = $sum > $target ? $sum - $target : $target - $sum;
+    for ($i = 0; $i < count($nums); $i++){
+        if($i > 0 && $nums[$i] == $nums[$i-1] && $i < count($nums) - 1){
+            continue;// 去重
+        }
+
+        $left = $i + 1;
+        $right = count($nums) - 1;
+
+        do{
+            if($left >= $right){
+                break;
+            }
+            $sum = $nums[$i] + $nums[$left] + $nums[$right];
+            $diff = $sum > $target ? $sum - $target : $target - $sum;
+            if($diff < $min){
+                $min = $diff;
+                $result = $sum;
+            }
+
+            if($sum < $target){
+                while($nums[$left + 1] == $nums[$left] && $left < $right){
+                    $left ++;// 去重
+                }
+                $left ++;
+            }else{
+                while($nums[$right - 1] == $nums[$right] && $left < $right){
+                    $right --;// 去重
+                }
+                $right --;
+            }
+        }while ($left < $right);
+    }
+    return $result;
 }
