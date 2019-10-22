@@ -1,17 +1,17 @@
 <?php
 //include 'PHPArr/function.php';
-require 'PHPStr/function.php';
-//include "PHPLinkedList/function.php";
-include "PHPTreeNode/TreeNode.php";
-include "PHPTreeNode/function.php";
-
-$root = new TreeNode(4);
-$root->left = new TreeNode(2);
-$root->left->left = new TreeNode(3);
-$root->left->right = new TreeNode(7);
-$root->right = new TreeNode(15);
-$data = searchBST($root,2);
-var_dump($data);
+//require 'PHPStr/function.php';
+////include "PHPLinkedList/function.php";
+//include "PHPTreeNode/TreeNode.php";
+//include "PHPTreeNode/function.php";
+//
+//$root = new TreeNode(4);
+//$root->left = new TreeNode(2);
+//$root->left->left = new TreeNode(3);
+//$root->left->right = new TreeNode(7);
+//$root->right = new TreeNode(15);
+//$data = searchBST($root,2);
+//var_dump($data);
 //$data = divide(10,3);
 //print_r($data);
 //$data = preorderTraversal($root);
@@ -79,3 +79,46 @@ var_dump($data);
 //$B = 'abcbb';
 //$data = buddyStrings($A,$B);
 //var_dump($data);
+
+
+//function includeDirScript($dir){
+//
+//    //打开文件夹
+//    $handler = opendir($dir);
+//
+//    //遍历脚本文件夹下的所有文件
+//    while( (($filename = readdir($handler)) !== false) ){
+//
+//        //如果文件为php脚本文件
+//        if( substr($filename,-4) == '.php' ){
+//
+//            //将文件包含进来
+//            require_once( $dir.'/'.$filename );
+//        }
+//    }
+//
+//    //关闭文件夹
+//    closedir($handler);
+//
+//}
+
+//打开文件夹
+$dir = 'PHPArr';
+$handler = opendir($dir);
+
+//遍历脚本文件夹下的所有文件
+while( (($filename = readdir($handler)) !== false) ){
+    //如果文件为php脚本文件
+    if( substr($filename,-4) == '.php' ){
+        //将文件包含进来
+        require_once($dir.'/'.$filename );
+    }
+}
+
+//关闭文件夹
+closedir($handler);
+
+$string = 'ABCDEFGHIGKLMN';
+$line = 6;
+$data = convert($string,$line);
+print_r($data);
