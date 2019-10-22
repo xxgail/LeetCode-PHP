@@ -103,7 +103,7 @@
 //}
 
 //打开文件夹
-$dir = 'PHPArr';
+$dir = 'PHPStr';
 $handler = opendir($dir);
 
 //遍历脚本文件夹下的所有文件
@@ -118,7 +118,6 @@ while( (($filename = readdir($handler)) !== false) ){
 //关闭文件夹
 closedir($handler);
 
-$string = 'ABCDEFGHIGKLMN';
-$line = 6;
-$data = convert($string,$line);
+$string = "aab";
+$data = lengthOfLongestSubstring($string);
 print_r($data);
