@@ -103,7 +103,7 @@
 //}
 
 //打开文件夹
-$dir = 'PHPStr';
+$dir = 'PHPArr';
 $handler = opendir($dir);
 
 //遍历脚本文件夹下的所有文件
@@ -118,6 +118,13 @@ while( (($filename = readdir($handler)) !== false) ){
 //关闭文件夹
 closedir($handler);
 
-$string = " ";
-$data = lengthOfLongestSubstring($string);
-print_r($data);
+$nums = [4,2,0,2,3,2,0];
+$data = nextPermutation($nums);
+print_r($nums);
+
+//$nums = [1,2,3];
+//$left = 0;
+//$data1 = array_slice($nums,0,$left + 1);
+//$data2 = array_slice($nums,$left + 1);
+//print_r($data1);
+//print_r($data2);
