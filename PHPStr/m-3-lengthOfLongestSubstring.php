@@ -9,13 +9,17 @@
 function lengthOfLongestSubstring($s){
     $max = 0;
     $result = '';
+    $len = 0;
     for ($i = 0; $i < strlen($s); $i++){
-        if(strpos($result,$s[$i]) !== false){
-            $result = '';
-        }else{
-            $result .= $s[$i];
+        $repeat = strpos($result,$s[$i]);
+        if($repeat !== false){
+            $result = substr($result,$repeat + 1);
+            $len -= ($repeat+1);
         }
-        $len = strlen($result);
+        $result .= $s[$i];
+        $len ++;
+
+//        $len = strlen($result); // 从运行速度上来看，$len的加减比计算长度快
         if($len > $max){
             $max = $len;
         }

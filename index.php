@@ -118,6 +118,6 @@ while( (($filename = readdir($handler)) !== false) ){
 //关闭文件夹
 closedir($handler);
 
-$string = "aab";
+$string = " ";
 $data = lengthOfLongestSubstring($string);
 print_r($data);
