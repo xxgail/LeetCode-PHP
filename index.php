@@ -120,7 +120,12 @@ closedir($handler);
 
 $nums = [4,2,0,2,3,2,0];
 $data = nextPermutation($nums);
+print_r($data);
 print_r($nums);
+
+$arr = [];
+$arr = array_reverse($arr);
+var_dump($arr);
 
 //$nums = [1,2,3];
 //$left = 0;

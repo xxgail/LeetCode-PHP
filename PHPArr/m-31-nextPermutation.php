@@ -1,7 +1,7 @@
 <?php
 /**
  * @Time: 2019/10/23 22:52
- * @DESC: 31 todo
+ * @DESC: 31
  * 实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。
  * 如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。
  * 必须原地修改，只允许使用额外常数空间。
@@ -9,35 +9,36 @@
  * @param $nums
  */
 function nextPermutation(&$nums) {
-    $change = 1;
-    for($i = count($nums) - 1; $i > 0; $i--){
-        $left = $i - 1;
-        while ($left >= 0){
-            if($nums[$i] > $nums[$left]){
-                $a = $nums[$i];
-                $nums[$i] = $nums[$left];
-                $nums[$left] = $a;
-                $arr1 = array_slice($nums,0,$left + 1);
-                $arr2 = array_slice($nums,$left+1);
-                if($arr2){
-                    sort($arr2);
-                }
-                $nums = array_merge($arr1,$arr2);
-                $change ++;
-                break 2;
+    $left = '';
+    for($i = count($nums) - 1; $i > 0; $i--) {
+        if ($nums[$i] <= $nums[$i - 1]) {
+            continue;
+        } else {
+            $left = $i - 1;
+            break;
+        }
+    }
+    if($left === ''){
+        $nums = array_reverse($nums);
+    } else{
+        $right = '';
+        for ($i = count($nums) - 1; $i > $left; $i--){
+            if($nums[$i] <= $nums[$left]){
+                continue;
             }else{
-                $left --;
-                if($left == -1){
-                    break;
-                }
+                $right = $i;
+                break;
             }
         }
+        $a = $nums[$left];
+        $nums[$left] = $nums[$right];
+        $nums[$right] = $a;
 
+        $arr1 = array_slice($nums,0,$left + 1);
+        $arr2 = array_reverse(array_splice($nums,$left + 1));
+
+        $nums = array_merge($arr1,$arr2);
     }
-    if($change == 1){
-        $nums = array_reverse($nums);
-    }
-    // return ;
 }
 
 ## 136542
