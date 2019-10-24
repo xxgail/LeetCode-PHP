@@ -118,14 +118,25 @@ while( (($filename = readdir($handler)) !== false) ){
 //关闭文件夹
 closedir($handler);
 
-$nums = [4,2,0,2,3,2,0];
-$data = nextPermutation($nums);
-print_r($data);
-print_r($nums);
+$dir = 'PHPStr';
+$handler = opendir($dir);
 
-$arr = [];
-$arr = array_reverse($arr);
-var_dump($arr);
+//遍历脚本文件夹下的所有文件
+while( (($filename = readdir($handler)) !== false) ){
+    //如果文件为php脚本文件
+    if( substr($filename,-4) == '.php' ){
+        //将文件包含进来
+        require_once($dir.'/'.$filename );
+    }
+}
+
+//关闭文件夹
+closedir($handler);
+
+$s = '14 - 14/3';
+$data = calculate($s);
+var_dump($data);
+
 
 //$nums = [1,2,3];
 //$left = 0;
