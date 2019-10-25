@@ -133,9 +133,23 @@ while( (($filename = readdir($handler)) !== false) ){
 //关闭文件夹
 closedir($handler);
 
-$s = '14 - 14/3';
-$data = calculate($s);
-var_dump($data);
+//$s = '14 - 14/3';
+
+$words = ["deq","mee","aqq","dkd","ccc"];
+$w = "deq";
+$pattern = "abb";
+$words = ["bcbc","cdcd","xyxs","ysxx","yxyx"];
+//$words = ["xyxs"];
+$pattern = 'abab';
+//$data = findAndReplacePattern($words,$pattern);
+//print_r($data);
+//$w = "aaabbbcc";
+//$s = "a";
+//$w = str_replace('b','a',$w,$count);
+//var_dump($count);
+//var_dump($w);
+//$data = calculate($s);
+//var_dump($data);
 
 
 //$nums = [1,2,3];
@@ -144,3 +158,7 @@ var_dump($data);
 //$data2 = array_slice($nums,$left + 1);
 //print_r($data1);
 //print_r($data2);
+
+$N = 903;
+$data = primePalindrome($N);
+var_dump($data);
