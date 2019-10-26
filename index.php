@@ -159,6 +159,10 @@ $pattern = 'abab';
 //print_r($data1);
 //print_r($data2);
 
-$N = 903;
-$data = primePalindrome($N);
+//$N = 903;
+//$data = primePalindrome($N);
+//var_dump($data);
+
+$nums = [];
+$data = summaryRanges($nums);
 var_dump($data);
