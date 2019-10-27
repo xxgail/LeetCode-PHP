@@ -163,6 +163,6 @@ $pattern = 'abab';
 //$data = primePalindrome($N);
 //var_dump($data);
 
-$nums = [];
+$nums = [-5,-3,-2,0,1,2,4,5,7];
 $data = summaryRanges($nums);
 var_dump($data);
