@@ -171,5 +171,6 @@ $A = [2,0,4,1,2];
 $B = [1,3,0,0,2];
 
 
-$data = advantageCount($A,$B);
+//$data = advantageCount($A,$B);
+$data = productExceptSelf([1,2,3,4,1]);
 var_dump($data);
