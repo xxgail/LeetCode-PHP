@@ -163,6 +163,13 @@ $pattern = 'abab';
 //$data = primePalindrome($N);
 //var_dump($data);
 
-$nums = [-5,-3,-2,0,1,2,4,5,7];
-$data = summaryRanges($nums);
+//$nums = [1,8,6,2,5,4,8,3,7];
+//$data = maxArea($nums);
+//var_dump($data);
+
+$A = [2,0,4,1,2];
+$B = [1,3,0,0,2];
+
+
+$data = advantageCount($A,$B);
 var_dump($data);
