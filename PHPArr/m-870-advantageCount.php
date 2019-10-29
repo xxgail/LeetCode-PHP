@@ -9,24 +9,24 @@
  * @return array
  */
 function advantageCount($A, $B) {
-    # 超出时间限制 〒▽〒
-//    sort($A);
-//    $result = [];
-//    for ($i = 0; $i < count($B); $i++){
-//        if($B[$i] >= end($A)){
-//            $result[] = array_shift($A);
-//            continue;
-//        }
-//        for ($j = 0; $j < count($A); $j++){
-//            if($A[$j] > $B[$i]){
-//                $result[] = $A[$j];
-//                unset($A[$j]);
-//                $A = array_values($A);
-//                break;
-//            }else{
-//                continue;
-//            }
-//        }
-//    }
-//    return $result;
+    # todo : 超出时间限制 〒▽〒
+    sort($A);
+    $result = [];
+    for ($i = 0; $i < count($B); $i++){
+        if($B[$i] >= end($A)){
+            $result[] = array_shift($A);
+            continue;
+        }
+        for ($j = 0; $j < count($A); $j++){
+            if($A[$j] > $B[$i]){
+                $result[] = $A[$j];
+                unset($A[$j]);
+                $A = array_values($A);
+                break;
+            }else{
+                continue;
+            }
+        }
+    }
+    return $result;
 }
