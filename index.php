@@ -167,10 +167,21 @@ $pattern = 'abab';
 //$data = maxArea($nums);
 //var_dump($data);
 
-$A = [2,0,4,1,2];
-$B = [1,3,0,0,2];
+//$A = [2,0,4,1,2];
+//$B = [1,3,0,0,2];
 
 
 //$data = advantageCount($A,$B);
-$data = productExceptSelf([1,2,3,4,1]);
+//$data = productExceptSelf([1,2,3,4,1]);
+//var_dump($data);
+
+$start_time = microtime(true);
+
+$nums = [9,9,9,9];
+
+$data = plusOne($nums);
 var_dump($data);
+
+$end_time = microtime(true);//获取程序执行结束的时间
+$total = $end_time - $start_time;   //计算差值
+var_dump($total);

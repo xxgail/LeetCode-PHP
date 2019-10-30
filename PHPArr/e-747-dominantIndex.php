@@ -16,7 +16,6 @@ function dominantIndex($nums) {
             return -1;
         }
         if($big_num == $v){
-            $result = $k;
             return $k;
         }
     }

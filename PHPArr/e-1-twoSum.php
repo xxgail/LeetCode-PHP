@@ -10,15 +10,23 @@
  * @return array
  */
 function twoSum1($nums, $target) {
-    $new_nums = [];
-    foreach($nums as $num){
-        $new_nums[] = $target - $num;
-    }
+//    $new_nums = [];
+//    foreach($nums as $num){
+//        $new_nums[] = $target - $num;
+//    }
+//
+//    for($i = 0; $i < count($nums); $i++){
+//        $site = array_search($nums[$i],$new_nums);
+//        if($site !== false && $site != $i){
+//            return [$i,$site];
+//        }
+//    }
 
-    for($i = 0; $i < count($nums); $i++){
-        $site = array_search($nums[$i],$new_nums);
-        if($site !== false && $site != $i){
-            return [$i,$site];
+    for ($i = 0; $i < count($nums); $i++){
+        for ($j = 0; $j < count($nums); $j++){
+            if($i != $j && $nums[$i] + $nums[$j] == $target){
+                return [$i,$j];
+            }
         }
     }
 }

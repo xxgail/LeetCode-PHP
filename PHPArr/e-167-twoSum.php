@@ -12,6 +12,7 @@
  * @return array
  */
 function twoSum($numbers, $target) {
+    # 普通循环
     for($i = 0; $i < count($numbers); $i++){
         if($i > 0){
             if($numbers[$i] == $numbers[$i-1]){
@@ -31,4 +32,21 @@ function twoSum($numbers, $target) {
         }
     }
     return [];
+
+    # -------------------------------------------------------------------
+    # 双指针移动
+    $left = 0;
+    $right = count($numbers) - 1;
+    while ($left < $right){
+        $sum = $numbers[$left] + $numbers[$right];
+        if($sum == $target){
+            return [$left,$right];
+        }
+
+        if($sum < $target){
+            $left++;
+        }else{
+            $right++;
+        }
+    }
 }
