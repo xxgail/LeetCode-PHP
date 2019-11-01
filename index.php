@@ -177,9 +177,9 @@ $pattern = 'abab';
 
 $start_time = microtime(true);
 
-$nums = [9,9,9,9];
+$nums = 2;
 
-$data = plusOne($nums);
+$data = numSquares($nums);
 var_dump($data);
 
 $end_time = microtime(true);//获取程序执行结束的时间
