@@ -5,6 +5,7 @@
     - BidManipulation 位运算
     - DynamicProgramming 动态规划
     - Greedy Algorithm 贪婪算法
+    - Math 数学
     - MySQL 数据库
     - PHPArr 数组
     - PHPLinkedList 链表
