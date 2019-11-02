@@ -1,9 +1,4 @@
 <?php
-//include 'PHPArr/function.php';
-//require 'PHPStr/function.php';
-////include "PHPLinkedList/function.php";
-//include "PHPTreeNode/TreeNode.php";
-//include "PHPTreeNode/function.php";
 //
 //$root = new TreeNode(4);
 //$root->left = new TreeNode(2);
@@ -103,7 +98,7 @@
 //}
 
 //打开文件夹
-$dir = 'PHPArr';
+$dir = 'Array';
 $handler = opendir($dir);
 
 //遍历脚本文件夹下的所有文件
@@ -118,7 +113,7 @@ while( (($filename = readdir($handler)) !== false) ){
 //关闭文件夹
 closedir($handler);
 
-$dir = 'PHPStr';
+$dir = 'String';
 $handler = opendir($dir);
 
 //遍历脚本文件夹下的所有文件

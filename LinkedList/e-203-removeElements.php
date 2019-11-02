@@ -1,10 +1,4 @@
 <?php
-include "ListNode.php";
-/**
- * LinkedList
- * ————————————————————————————————
- */
-
 /**
  * @Time: 2019/9/11 18:09
  * @DESC: 203
@@ -34,10 +28,3 @@ function removeElements($head, $val) {
 //
 //    return $header->next;
 }
-
-$head = new ListNode(1);
-$head->next = new ListNode(2);
-$head->next->next = new ListNode(3);
-$val = 1;
-$data = removeElements($head,$val);
-print_r($data);
