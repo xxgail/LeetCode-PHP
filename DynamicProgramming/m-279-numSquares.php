@@ -11,13 +11,37 @@
  * @param $n
  * @return int
  */
-function numSquares($n) { # todo: 超出时间限制 ╥﹏╥
-    $min = $n;
-    numSquaresFunc($n,0,$min);
-    return $min;
+function numSquares($n) {
+    $dp = [];
+    $dp[0] = 0;
+    $dp[1] = 1;
+    for ($i = 2; $i <= $n; $i++) {
+        $min = $n;
+        for ($j = 1; $j * $j <= $i; $j++) {
+            if ($j * $j == $i) {
+                $min = 1;
+                break;
+            }
+            $min = min($min, $dp[$j * $j] + $dp[$i - $j * $j]);
+        }
+        $dp[$i] = $min;
+    }
+
+    return $dp[$n];
+
+    # 超出时间限制 ╥﹏╥
+//    $min = $n;
+//    numSquaresFunc($n,0,$min);
+//    return $min;
 }
 
 function numSquaresFunc($n,$res,&$min){
+    if($n == 0){
+        if($res < $min){
+            $min = $res;
+        }
+        return;
+    }
     $k = ceil(sqrt($n));
     if(pow($k,2) == $n){
         if($res + 1 < $min){
@@ -25,7 +49,8 @@ function numSquaresFunc($n,$res,&$min){
         }
         return;
     }
-    for ($i = $k-1; $i >= ceil(sqrt($k)); $i--){
+
+    for ($i = $k-1; $i >= (($k > 4) ? ceil(sqrt($k)) : floor(sqrt($k))); $i--){
         numSquaresFunc($n - pow($i,2),$res+1,$min);
     }
 }
