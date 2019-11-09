@@ -13,7 +13,30 @@
  * 删除 4 来获得 4 个点数，因此 3 也被删除。
  * 之后，删除 2 来获得 2 个点数。总共获得 6 个点数。
  * @param $nums
+ * @return int
  */
 function deleteAndEarn($nums) {
+    if($nums == []){
+        return 0;
+    }
+    sort($nums);
+    $begin = $nums[0];
+    $end = end($nums);
+    $nums = array_count_values($nums);
+    for ($i = $begin; $i < $end; $i++){
+        $nums[$i] = $nums[$i] ?? 0;
+    }
+    ksort($nums);
 
+    $prevMax = 0;
+    $currMax = 0;
+    foreach ($nums as $k => $item) {
+        $temp = $currMax;
+        $currMax = max($prevMax + $k * $item, $currMax);
+        $prevMax = $temp;
+    }
+    return $currMax;
 }
+
+##----
+# 啊啊啊啊啊啊啊啊我是怎么写出来的！！！

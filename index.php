@@ -205,8 +205,8 @@ $start_time = microtime(true);
 //$nums = 258;
 //
 //$data = numSquares($nums);
-$nums = [2,1,1,2];
-$data = rob($nums);
+$nums = [1,3];
+$data = deleteAndEarn($nums);
 var_dump($data);
 //$beginWord = 'hit';
 //$endWord = 'cog';
