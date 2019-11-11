@@ -205,8 +205,12 @@ $start_time = microtime(true);
 //$nums = 258;
 //
 //$data = numSquares($nums);
-$nums = [1,3];
-$data = deleteAndEarn($nums);
+$nums = [
+    [1,3,1],
+    [1,5,1],
+    [4,2,1]
+ ];
+$data = minPathSum($nums);
 var_dump($data);
 //$beginWord = 'hit';
 //$endWord = 'cog';
