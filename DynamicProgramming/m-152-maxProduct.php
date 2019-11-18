@@ -16,13 +16,25 @@
  * @return mixed
  */
 function maxProduct($nums) {
-//    $res = [];
-    $re = 1;
-    $current = $nums[0];
-    for($i = 0; $i < count($nums); $i++){
-        $re *= $nums[$i];
-        $current = max($current,$nums[$i],$re);
+    $max = PHP_INT_MIN; # int类型的最小值
+    $imax = 1;
+    $imin = 1;
+    foreach($nums as $num){
+        if($num < 0){
+            list($imax,$imin) = [$imin,$imax];
+        }
+        $imax = max($num,$imax * $num);
+        $imin = min($num,$imin * $num);
+        $max = max($max, $imax);
     }
-
-    return $current;
+    return $max;
 }
+
+##---
+# 题解中的思路
+# 标签：动态规划
+# 遍历数组时计算当前最大值，不断更新
+# 令imax为当前最大值，则当前最大值为 imax = max(imax * nums[i], nums[i])
+# 由于存在负数，那么会导致最大的变最小的，最小的变最大的。因此还需要维护当前最小值imin，imin = min(imin * nums[i], nums[i])
+# 当负数出现时则imax与imin进行交换再进行下一步计算
+# 时间复杂度：O(n)
