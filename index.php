@@ -158,6 +158,22 @@ while( (($filename = readdir($handler)) !== false) ){
 //关闭文件夹
 closedir($handler);
 
+
+$dir = 'GreedyAlgorithm';
+$handler = opendir($dir);
+
+//遍历脚本文件夹下的所有文件
+while( (($filename = readdir($handler)) !== false) ){
+    //如果文件为php脚本文件
+    if( substr($filename,-4) == '.php' ){
+        //将文件包含进来
+        require_once($dir.'/'.$filename );
+    }
+}
+
+//关闭文件夹
+closedir($handler);
+
 //$s = '14 - 14/3';
 
 $words = ["deq","mee","aqq","dkd","ccc"];
@@ -218,8 +234,13 @@ $start_time = microtime(true);
 //$s = 'cars';
 //$wordDict = ['car','ca','rs'];
 //$data = wordBreak($s,$wordDict);
-$nums = [-2,1,-3,4,-1,2,1,-5,4];
-$data = maxSubArray($nums);
+//$nums = [-2,1,-3,4,-1,2,1,-5,4];
+//$data = maxSubArray($nums);
+$A = [2,0,4,1,2];
+$B = [1,3,0,0,2];
+
+
+$data = advantageCount($A,$B);
 var_dump($data);
 //$beginWord = 'hit';
 //$endWord = 'cog';

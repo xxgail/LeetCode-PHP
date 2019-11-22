@@ -13,20 +13,39 @@ function advantageCount($A, $B) {
     sort($A);
     $result = [];
     for ($i = 0; $i < count($B); $i++){
-        if($B[$i] >= end($A)){
-            $result[] = array_shift($A);
-            continue;
-        }
-        for ($j = 0; $j < count($A); $j++){
-            if($A[$j] > $B[$i]){
-                $result[] = $A[$j];
-                unset($A[$j]);
-                $A = array_values($A);
-                break;
+//        if($B[$i] >= end($A)){
+//            $result[] = array_shift($A);
+//            continue;
+//        }
+//        for ($j = 0; $j < count($A); $j++){
+//            if($A[$j] > $B[$i]){
+//                $result[] = $A[$j];
+//                unset($A[$j]);
+//                $A = array_values($A);
+//                break;
+//            }else{
+//                continue;
+//            }
+//        }
+        // 换成二分法查找 todo:还是不对
+        $start = 0; $end = count($A); $mid = 0;
+        while ($start < $end){
+            $mid = floor(($start + $end)/2);
+//            return $mid;
+            if($A[$mid] > $B[$i]){
+                $end = $mid;
             }else{
-                continue;
+                $start = $mid + 1;
             }
         }
+//        return $start;
+        var_dump($A[$start]);
+        if($A[$start] <= $B[$i]){
+            $start = 0;
+        }
+        $result[] = $A[$start];
+        $A = array_values(array_diff_key($A,[$start]));
+//        return $A;
     }
     return $result;
 }
