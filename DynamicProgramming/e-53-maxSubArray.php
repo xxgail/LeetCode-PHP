@@ -20,3 +20,15 @@ function maxSubArray($nums) {
 
     return $res;
 }
+
+#-- 思路
+# i   curr  res
+# 0    -2   -2
+# 1    1    1
+# 2    -2   1
+# 3    4    4
+# 4    3    4
+# 5    5    5
+# 6    6    6
+# 7    1    6
+# 8    5    6
