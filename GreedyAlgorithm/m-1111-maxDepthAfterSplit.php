@@ -17,7 +17,7 @@ s 为嵌套情况，depth("(" + A + ")") = 1 + depth(A)，其中 A 是有效括�
  * @param $seq
  * @return array
  */
-function maxDepthAfterSplit($seq) { // todo: 没看懂题哈哈哈哈
+function maxDepthAfterSplit($seq) {
     $data = [];
     $num = 0;
     for ($i = 0; $i < strlen($seq); $i++){

@@ -1,7 +1,7 @@
 <?php
 /**
  * @Time: 2019/10/29 13:38
- * @DESC: 870. 田忌赛马
+ * @DESC: 870. 田忌赛马 优势洗牌
  * 给定两个大小相等的数组 A 和 B，A 相对于 B 的优势可以用满足 A[i] > B[i] 的索引 i 的数目来描述。
  * 返回 A 的任意排列，使其相对于 B 的优势最大化。
  * @param $A
@@ -9,43 +9,26 @@
  * @return array
  */
 function advantageCount($A, $B) {
-    # todo : 超出时间限制 〒▽〒
     sort($A);
     $result = [];
     for ($i = 0; $i < count($B); $i++){
-//        if($B[$i] >= end($A)){
-//            $result[] = array_shift($A);
-//            continue;
-//        }
-//        for ($j = 0; $j < count($A); $j++){
-//            if($A[$j] > $B[$i]){
-//                $result[] = $A[$j];
-//                unset($A[$j]);
-//                $A = array_values($A);
-//                break;
-//            }else{
-//                continue;
-//            }
-//        }
-        // 换成二分法查找 todo:还是不对
-        $start = 0; $end = count($A); $mid = 0;
+        // 换成二分法查找
+        $start = 0; $end = count($A)-1;
         while ($start < $end){
             $mid = floor(($start + $end)/2);
-//            return $mid;
             if($A[$mid] > $B[$i]){
                 $end = $mid;
             }else{
                 $start = $mid + 1;
             }
         }
-//        return $start;
-        var_dump($A[$start]);
+
         if($A[$start] <= $B[$i]){
             $start = 0;
         }
         $result[] = $A[$start];
-        $A = array_values(array_diff_key($A,[$start]));
-//        return $A;
+        unset($A[$start]); # 删除A中已经被选中的元素。
+        $A = array_values($A);
     }
     return $result;
 }
