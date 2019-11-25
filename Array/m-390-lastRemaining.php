@@ -10,10 +10,21 @@
  * @param $n
  * @return mixed
  */
-function lastRemaining($n) {
+function lastRemaining($n) {//todo
+    # 通过。
+    if($n < 3){return $n;}
+    if($n%2 == 1){
+        return lastRemaining($n - 1);
+    }else{
+        return 2 * ($n/2 + 1 - lastRemaining($n/2));
+    }
+
+
     # ---- 找规律，用递归来解决，但是不知道为什么显示超出内存
     # 来源：https://blog.csdn.net/afei__/article/details/83689502
     return $n == 1 ? 1 : 2 * ($n/2 + 1 - lastRemaining($n/2));
+
+
     #---- 这是生成数组然后遍历的解法，但是如果$n的值太大会报溢出内存的错误。
     $n = range(1,$n);
     while (count($n) > 1){
