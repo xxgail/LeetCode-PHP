@@ -15,7 +15,6 @@
  * @return int
  */
 function subarraysWithKDistinct($A, $K) {
-
     # ---------- TODO：超出内存
     $res = 0;
     for ($i = 0; $i <= count($A)-$K; $i++){
