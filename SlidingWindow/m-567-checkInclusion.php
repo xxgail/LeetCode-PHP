@@ -17,26 +17,54 @@
  * @return bool
  */
 function checkInclusion($s1, $s2) {
-    $len = strlen($s1);
-    $s1 = str_split($s1);
-    sort($s1);
-    $s2 = str_split($s2);
-    for ($i = 0; $i < $len; $i++){
-        $s = $s2;
-        while ($s){
-            $loca = array_search($s1[$i],$s);
-            if($loca){
-                $s1_like = array_slice($s,$loca,$len);
-                sort($s1_like);
-                if(s1 == $s1_like){
-                    return true;
-                }else{
-                    $s = array_splice($s,$loca);
-                }
+    $m = strlen($s1);
+    $n = strlen($s2);
+    if($m > $n){
+        return false;
+    }
+
+    $hash1 = [];
+    $hash2 = [];
+    for ($i = 0; $i < $m; $i++){
+        if (!isset($hash1[$s1[$i]])){
+            $hash1[$s1[$i]] = 1;
+        }else{
+            $hash1[$s1[$i]] ++;
+        }
+
+        if(!isset($hash2[$s2[$i]])){
+            $hash2[$s2[$i]] = 1;
+        }else{
+            $hash2[$s2[$i]]++;
+        }
+    }
+
+    for ($i = $m; $i < $n; $i++){
+        if (isEqual($hash1,$hash2)){
+            return true;
+        }else{
+            $hash2[$s2[$i-$m]] --;
+            if(!isset($hash2[$s2[$i]])) {
+                $hash2[$s2[$i]] = 1;
             }else{
-                break;
+                $hash2[$s2[$i]]++;
             }
         }
     }
-    return false;
+
+    return isEqual($hash1,$hash2);
 }
+
+function isEqual($hash1,$hash2){
+    foreach ($hash1 as $k => $value) {
+        if(!(isset($hash2[$k]) && $hash2[$k] == $value)){
+            return false;
+        }
+    }
+
+    return true;
+}
+
+##----
+# 双哈希表+滑动窗口
+# 着重看一下PHP的哈希表

@@ -6,7 +6,7 @@ $start_time = microtime(true);
 #------------------------- test start ----------------------------
 
 $s1= "ab";
-$s2 = "eidbaoo";
+$s2 = "xcnbaivd";
 $data = checkInclusion($s1,$s2);
 var_dump($data);
 
