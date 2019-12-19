@@ -1,5 +1,5 @@
-# php-alg
-坚持每天做算法题(๑╹ヮ╹๑)ﾉ Studying makes me happy
+# LeetCode-PHP
+坚持每天做算法题 (๑╹ヮ╹๑)ﾉ Studying makes me happy
 
 - 文件夹
     - Array 数组
