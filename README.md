@@ -1,5 +1,5 @@
-# php-alg
-坚持每天做算法题(๑╹ヮ╹๑)ﾉ Studying makes me happy
+# LeetCode-PHP
+坚持每天做算法题 (๑╹ヮ╹๑)ﾉ Studying makes me happy
 
 - 文件夹
     - Array 数组
@@ -19,6 +19,7 @@
     - MySQL 数据库
     - Queue 队列
     - Recursion 递归
+    - Sliding Window 滑动窗口
     - Stack 栈
     - String 字符串
     - TreeNode 二叉树

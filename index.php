@@ -176,12 +176,12 @@ closedir($handler);
 
 //$s = '14 - 14/3';
 
-$words = ["deq","mee","aqq","dkd","ccc"];
-$w = "deq";
-$pattern = "abb";
-$words = ["bcbc","cdcd","xyxs","ysxx","yxyx"];
+//$words = ["deq","mee","aqq","dkd","ccc"];
+//$w = "deq";
+//$pattern = "abb";
+//$words = ["bcbc","cdcd","xyxs","ysxx","yxyx"];
 //$words = ["xyxs"];
-$pattern = 'abab';
+//$pattern = 'abab';
 //$data = findAndReplacePattern($words,$pattern);
 //print_r($data);
 //$w = "aaabbbcc";
@@ -236,11 +236,15 @@ $start_time = microtime(true);
 //$data = wordBreak($s,$wordDict);
 //$nums = [-2,1,-3,4,-1,2,1,-5,4];
 //$data = maxSubArray($nums);
-$A = [2,0,4,1,2];
-$B = [1,3,0,0,2];
+//$A = [2,0,4,1,2];
+//$B = [1,3,0,0,2];
+//
+//
+//$data = advantageCount($A,$B);
 
-
-$data = advantageCount($A,$B);
+$X = 1024;
+$Y = 1;
+$data = brokenCalc($X,$Y);
 var_dump($data);
 //$beginWord = 'hit';
 //$endWord = 'cog';
