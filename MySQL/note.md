@@ -1,5 +1,9 @@
 # MySQL 语法
 
+## 命令行打开MySQL：
+- 启动 >mysql -u root -p
+- 退出 >exit
+
 ## 一、对数据库的操作
 ### 1. 增删
 - CREATE DATABASE 库名;
