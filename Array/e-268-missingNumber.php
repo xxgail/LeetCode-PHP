@@ -11,11 +11,19 @@ function missingNumber($nums) {
     $sum = array_sum($nums);
     // return $sum;
     $len = count($nums);
-    for($i = 0; $i < $len + 1; $i++){
-        $sum -= $i;
-    }
-    return $sum * -1;
+    $sum1 = $len * ($len + 1) / 2;
+    return $sum1 - $sum;
 }
 
 ###
-# todo: 线性时间复杂度？？
+# 线性时间复杂度 O(n) 即只有一次for循环♻️
+# 按数量级递增排列，常见的时间复杂度有：
+# 常数阶O(1)
+# 对数阶O(log2n)
+# 线性阶O(n)
+# 线性对数阶O(nlog2n)
+# 平方阶O(n2)
+# 立方阶O(n3)
+# k次方阶O(nk)
+# 指数阶O(2n)。
+# 随着问题规模n的不断增大，上述时间复杂度不断增大，算法的执行效率越低。
