@@ -4,8 +4,8 @@
 - 文件夹
     - Array 数组
     - Backtracking 回溯算法
-    - Bid Manipulation 位运算
     - Binary Search 二分查找
+    - Bit Manipulation 位运算
     - Breadth First Search 广度优先搜索算法
     - Depth First Search 深度优先搜索算法
     - Double Pointer 双指针
