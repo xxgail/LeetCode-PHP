@@ -12,7 +12,7 @@
  * @param $nums
  * @return int
  */
-function rob($nums){
+function rob($nums){ // 用循环代替递归
     $prevMax = 0;
     $currMax = 0;
     for ($i = 0; $i < count($nums); $i++) {
@@ -21,6 +21,43 @@ function rob($nums){
         $prevMax = $temp;
     }
     return $currMax;
+}
+
+/**
+ * @Time: 2020/3/9 20:58
+ * @DESC: 动态规划
+ * @param $nums
+ * @return mixed
+ */
+function robDp($nums){
+    $dp[0] = $nums[0];
+    $dp[1] = max($nums[0],$nums[1]);
+    for ($i = 2; $i < count($nums); $i++){
+        $dp[$i] = max($dp[$i-2] + $nums[$i],$dp[$i-1]);
+    }
+    return $dp[count($nums)-1];
+}
+
+/**
+ * @Time: 2020/3/9 20:48
+ * @DESC: 用递归来写的解法
+ * @param $nums
+ * @return mixed
+ */
+function robRec($nums){
+    return robRecFunc($nums,count($nums)-1);
+}
+
+function robRecFunc($nums,$i){
+    if ($i == 0){
+        return $nums[0];
+    }elseif ($i == 1){
+        return max($nums[0],$nums[1]);
+    }else {
+        $a = robRecFunc($nums,$i - 2) + $nums[$i];
+        $b = robRecFunc($nums,$i - 1);
+        return max($a, $b);
+    }
 }
 
 ##----- 官方解法
@@ -37,3 +74,5 @@ function rob($nums){
 # 答案为 f(n)。
 # 可以用一个数组来存储并计算结果。
 # 不过由于每一步你只需要前两个最大值，两个变量就足够用了。
+
+print_r(robDp([1,2,4,1,7,8,3]));
