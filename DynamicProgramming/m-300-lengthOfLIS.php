@@ -11,25 +11,42 @@
  *
  * 说明: 可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。
  * @param $numbers
- * @return int|mixed
+ * @return int
  */
 function lengthOfLIS($numbers){
     if(count($numbers) <= 1){
         return count($numbers);
     }
-    $dp[0] = 1;
-    $res = $dp[0];
-    for ($i = 1; $i < count($numbers); $i++){
-        $max = 0;
-        for ($j = 0; $j < $i; $j++){
-            if ($numbers[$j] < $numbers[$i]){ # 要跟前面所有比该元素小的dp作比较
-                $max = max($max,$dp[$j]);
+    # ----- 动态规划
+//    $dp[0] = 1;
+//    $res = $dp[0];
+//    for ($i = 1; $i < count($numbers); $i++){
+//        $max = 0;
+//        for ($j = 0; $j < $i; $j++){
+//            if ($numbers[$j] < $numbers[$i]){ # 要跟前面所有比该元素小的dp作比较
+//                $max = max($max,$dp[$j]);
+//            }
+//        }
+//        $dp[$i] = $max + 1;
+//        $res = max($res,$dp[$i]);
+//    }
+//    return $res;
+
+    # ----- 另外一种解题思路
+    $res = [$numbers[0]];
+    for($i = 1; $i < count($numbers); $i++){
+        if($numbers[$i] > end($res)){
+            $res[] = $numbers[$i];
+        }else{
+            for($j = 0; $j < count($res); $j++){
+                if($res[$j] >= $numbers[$i]){
+                    $res[$j] = $numbers[$i];
+                    break;
+                }
             }
         }
-        $dp[$i] = $max + 1;
-        $res = max($res,$dp[$i]);
     }
-    return $res;
+    return count($res);
 }
 
 $numbers = [4,10,4,3,8,9];
@@ -43,3 +60,7 @@ print_r(lengthOfLIS($numbers));
 # (很显然我为了图方便快捷没有/懒得跟前面所有元素相比，所以才会18/24个通过测试用例)
 # 如果前面没有比它小的元素，那选择该值在"上升子序列"中的长度就是1
 # so~
+
+###
+# 上面两种解法的时间复杂度都是O(n2)
+# 有时间看一下时间复杂度为O(n log n)的 TODO
