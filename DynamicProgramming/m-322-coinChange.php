@@ -9,21 +9,18 @@
  * @param $amount
  * @return int
  */
-function coinChange($coins,$amount){ // todo:动态规划！！！！！！！！！！！！！！
-    rsort($coins);
-    $result = 0;
-    for ($i = 0; $i < count($coins); $i++){
-        $a = floor($amount/$coins[$i]);
-        $amount -= $a * $coins[$i];
-        $result += $a;
-        if ($amount == 0){
-            return $result;
+function coinChange($coins,$amount){ //
+    $dp = array_fill(0,$amount+1,$amount+1);
+    $dp[0] = 0;
+    for ($i = 0; $i < $amount+1; $i++){
+        foreach ($coins as $coin) {
+            if ($i < $coin){
+                continue;
+            }
+            $dp[$i] = min($dp[$i],$dp[$i - $coin] + 1); // 此时的1代表硬币数量
         }
     }
-    if ($amount != 0){
-        return -1;
-    }
-    return $result;
+    return ($dp[$amount] == $amount + 1) ? -1 : $dp[$amount];
 }
 
 $coins = [1,2,5];
