@@ -1,7 +1,7 @@
 <?php
 
 //todo: 看堆的定义
-//https://learnku.com/articles/14747/common-algorithm-php-implementation-heap-sorting
+//
 # 把无序的数组调整为一个符合堆性质的数组
 /**
  * @Time: 2020/3/20 17:55
