@@ -19,7 +19,7 @@ function removeElements($head, $val) {
 //    $current = $header;
 //    $header->next = $head;
 //    if($current != null && $current->next != null){
-//        if($current->next->data == $val){
+//        if($current->next->val == $val){
 //            $current->next = $current->next->next;
 //        }else{
 //            $current = $current->next;
