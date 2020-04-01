@@ -1,4 +1,5 @@
 <?php
+require_once '../TreeNode/TreeNode.php';
 /**
  * @Time: 2019/9/8 16:13
  * @DESC:
@@ -6,22 +7,46 @@
  * @param $root
  * @return array
  */
-function preorderTraversal($root) {
-    $data = [];
-    array_push($data,$root);
+function preOrderTraversal($root) {
+    $s = new SplStack();
+    $s->push($root);
     $result = [];
-    while (!empty($data)){
-        $center_node = array_pop($data);
+    while (!$s->isEmpty()){
+        $current = $s->pop();
 
-        if($center_node->val != null)
-            $result[] = $center_node->val;
+        if($current->val != null)
+            $result[] = $current->val;
 
-        if($center_node->right != null){
-            array_push($data,$center_node->right);
+        if($current->right != null){
+            $s->push($current->right);
         }
-        if($center_node->left != null){
-            array_push($data,$center_node->left);
+
+        if($current->left != null){
+            $s->push($current->left);
         }
     }
     return $result;
 }
+
+/**
+ * @Time: 2020/4/1 21:40
+ * @DESC: 递归
+ * @param $root
+ * @param $data
+ */
+function preOrder($root,&$data){
+    if ($root == null){
+        return;
+    }
+    $data[] = $root->val;
+    preOrder($root->left,$data);
+    preOrder($root->right,$data);
+}
+
+$data = [];
+$root = new TreeNode(1);
+$root->left = new TreeNode(3);
+$root->right = new TreeNode(2);
+preOrder($root,$data);
+//var_dump($data);
+var_dump(preOrderTraversal($root));
