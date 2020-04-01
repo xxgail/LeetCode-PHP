@@ -30,4 +30,29 @@ function maxDepthAfterSplit($seq) {
         }
     }
     return $data;
+
+    // 4.1 每日一题 栈的写法 16ms
+    $A = new SplStack();
+    $B = new SplStack();
+    $res = [];
+    for ($i = 0; $i < strlen($seq); $i++){
+        if ($seq[$i] == '('){
+            if ($A->count() < $B->count()){
+                $A->push('(');
+                $res[] = 0;
+            }else{
+                $B->push('(');
+                $res[] = 1;
+            }
+        }else{
+            if ($A->isEmpty()){
+                $B->pop();
+                $res[] = 1;
+            }else{
+                $A->pop();
+                $res[] = 0;
+            }
+        }
+    }
+    return $res;
 }
