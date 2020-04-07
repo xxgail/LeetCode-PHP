@@ -1,5 +1,6 @@
 <?php
 require "TreeNode.php";
+# https://leetcode-cn.com/problems/validate-binary-search-tree/
 /**
  * @Time: 2020/3/27 17:09
  * @DESC: 94. 二叉搜索树
@@ -12,7 +13,18 @@ require "TreeNode.php";
  * @return bool
  */
 function isValidBST($root){
+    # 普通递归
     return isValidBSTFunc($root,null,null);
+
+    # 中序遍历然后判断是否是递增数组
+//    $data = [];
+//    inOrders($root,$data);
+//    for ($i = 1; $i < count($data); $i++){
+//        if ($data[$i] <= $data[$i-1]){
+//            return false;
+//        }
+//    }
+//    return true;
 }
 
 function isValidBSTFunc($root,$small,$big){
@@ -27,14 +39,27 @@ function isValidBSTFunc($root,$small,$big){
     return isValidBSTFunc($root->right,$root->val,$big) && isValidBSTFunc($root->left,$small,$root->val);
 }
 
-//$root = new TreeNode(10);
-//$root->left = new TreeNode(5);
-//$root->right = new TreeNode(15);
-//$root->right->left = new TreeNode(11);
-//$root->right->right = new TreeNode(20);
-$root = new TreeNode(0);
-$root->right = new TreeNode(-1);
+$root = new TreeNode(5);
+$root->left = new TreeNode(1);
+$root->right = new TreeNode(4);
+$root->right->left = new TreeNode(3);
+$root->right->right = new TreeNode(5);
+//$root = new TreeNode(1);
+//$root->left = new TreeNode(1);
 var_dump(isValidBST($root));
 
+
 # 二叉搜索树的中序遍历就是其所有节点的val按照升序排列
-# TODO：中序遍历也是可以的
+/**
+ * @DESC: 中序遍历递归生成数组
+ * @param $root
+ * @param $data
+ */
+function inOrders($root,&$data){
+    if ($root == null){
+        return;
+    }
+    inOrders($root->left,$data);
+    $data[] = $root->val;
+    inOrders($root->right,$data);
+}
