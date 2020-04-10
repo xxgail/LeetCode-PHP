@@ -7,13 +7,33 @@
  * @return string
  */
 function reverseWords($s) {
-    $s_arr = explode(' ',$s);
-    $new_data = [];
-    foreach($s_arr as $v){
-        if($v){
-            $new_data[] = $v; // 去掉空格
+    # ---- 一行解决
+//    return implode(" ",array_reverse(array_filter(explode(' ',$s))));
+
+    # ---- 代码稍微多一点
+    $res = "";
+    $left = 0;
+    $right = $left+1;
+    while ($right <= strlen($s)){
+        if ($s[$left] == " "){
+            $left++;
+            $right++;
+            continue;
+        }
+        if ($right == strlen($s) || $s[$right] == " "){
+            $res = substr($s,$left,$right-$left) ." ". $res;
+
+            $left = $right + 1;
+            $right = $left + 1;
+        }else{
+            $right++;
         }
     }
-    $new_data = array_reverse($new_data); // 翻转
-    return implode(' ',$new_data);
+    return rtrim($res);
 }
+
+$s = "the sky is blue";
+//$s = "  hello  world!  ";
+//$s = "a good      example";
+$s = "            ";
+var_dump(reverseWords($s));
