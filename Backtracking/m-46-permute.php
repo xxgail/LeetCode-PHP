@@ -8,7 +8,8 @@
  */
 function permute($nums){
     $result = [];
-    permuteFunc($nums,[],$result);
+//    permuteFunc($nums,[],$result);
+    Func($nums,[],count($nums),$result);
     return $result;
 }
 
@@ -25,5 +26,25 @@ function permuteFunc($nums,$data,&$result) {
         array_push($data,$nums[$i]);
         permuteFunc($nums,$data,$result);
         array_pop($data);
+    }
+}
+
+
+function Func($nums,$data,$n,&$result){
+    if ($n == 0){
+        array_push($result,$data);
+        return;
+    }
+
+    for ($i = 0; $i < count($nums); $i++){
+        if (in_array($nums[$i],$data)){
+            continue;
+        }
+
+        array_push($data,$nums[$i]);
+        $n--;
+        Func($nums,$data,$n,$result);
+        array_pop($data);
+        $n++;
     }
 }
