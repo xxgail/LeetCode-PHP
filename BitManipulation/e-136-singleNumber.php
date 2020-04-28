@@ -7,9 +7,20 @@
  * @return int|string|null
  */
 function singleNumber($nums) {
+    // 2020.4.28 原来用位运算就可以了啊orz
+    $res = 0;
+    for ($i = 0; $i < count($nums); $i++){
+        $res ^= $nums[$i];
+        var_dump($res);
+    }
+    return $res;
+
+    // 2019.9.3
     $nums = array_count_values($nums);
     asort($nums); // 倒序
     reset($nums); // reset 将指针移到数组的第一个元素并返回
     $first_key = key($nums);
     return $first_key;
 }
+
+var_dump(singleNumber([1,2,5,5,3,2,3]));
