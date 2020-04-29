@@ -10,25 +10,48 @@
  * @param $words
  * @return int
  */
-function maxProduct($words) { # todo: 没有用位运算！
-    $arr = [];
-    for($i = 0; $i < count($words); $i++){
-        for($j = 0; $j < strlen($words[$i]); $j++){
-            $arr[$i][$words[$i][$j]] = 1;
-//            $arr[$i][] = $words[$i][$j];
+function maxProduct($words) {
+//    return similar_text('abc','ydyod');
+
+    # 2020.04.29 位运算解决
+    $len = count($words);
+    $hash = array_fill(0,$len,0);
+    $max = 0;
+    for ($i = 0; $i < $len; $i++){
+        for ($j = 0; $j < strlen($words[$i]); $j++){
+            $hash[$i] |= 1 << (ord($words[$i][$j]) - 97);
         }
     }
-//    return $arr;
 
-    $max = 0;
-    for ($i = 0; $i < count($words)-1;$i++){
-        $right = $i+1;
-        while ($right < count($words)){
-            if(empty(array_intersect_key($arr[$i],$arr[$right]))){
-                $max = max($max,strlen($words[$i])*strlen($words[$right]));
+    for ($i = 0; $i < $len; $i++){
+        for ($j = $i+1; $j < $len; $j++){
+            if (($hash[$i] & $hash[$j]) == 0){
+                $max = max($max,strlen($words[$i])*strlen($words[$j]));
             }
-            $right++;
         }
     }
     return $max;
+
+//    $arr = [];
+//    for($i = 0; $i < count($words); $i++){
+//        for($j = 0; $j < strlen($words[$i]); $j++){
+//            $arr[$i][$words[$i][$j]] = 1;
+//        }
+//    }
+//
+//    $max = 0;
+//    for ($i = 0; $i < count($words)-1;$i++){
+//        $right = $i+1;
+//        while ($right < count($words)){
+//            if(empty(array_intersect_key($arr[$i],$arr[$right]))){
+//                $max = max($max,strlen($words[$i])*strlen($words[$right]));
+//            }
+//            $right++;
+//        }
+//    }
+//    return $max;
 }
+
+$words = ["abcw","baz","foo","bar","xtfn","abcdef"];
+$words = ["abcd", ""];
+var_dump(maxProduct($words));
