@@ -8,36 +8,75 @@
  * @param $s
  * @param $d
  * @return mixed|string
+ * @link https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/
  */
-function findLongestWord($s, $d) { // todo: 寻找最佳思路
+function findLongestWord($s, $d) {
+    # 2020.04.30  双百！
     $data = [];
-    foreach($d as $k => $v){
-        $s_arr = str_split($s);
-        $is_in = 1;
-        $v_arr = str_split($v);
-        foreach($v_arr as $v_str){
-            if(in_array($v_str,$s_arr)){
-                $k = array_search($v_str,$s_arr);
-                $s_arr = array_slice($s_arr,$k+1); // 分割
-                // var_dump($s_arr);
-            }else{
-                $is_in = 0;
+    for ($i = 0; $i < count($d); $i++) {
+        $str = $s;
+        $len = strlen($d[$i]);
+        for ($j = 0; $j < $len; $j++) {
+            $k = strpos($str, $d[$i][$j]);
+            if ($k === false || $str == "") {
+                continue 2;
             }
+            $str = substr($str, $k + 1); // ！！确保顺序一致
         }
-        if($is_in == 1){
-            $data[] = [
-                'length' => count($v_arr),
-                'dict' => $v,
-            ];
-        }
-
+        $data[] = [
+            'dict' => $d[$i],
+            'len' => $len,
+        ];
     }
-    if(count($data) == 0){
+
+    if ($data == []) {
         return "";
     }
-    // 字典最小
-    array_multisort(array_column($data,'dict'),SORT_ASC,$data);
-    // 长度最长的一个
-    array_multisort(array_column($data,'length'),SORT_DESC,$data);
+    $dict = array_column($data, 'dict');
+//    array_multisort($dict, SORT_ASC, $data);
+    $length = array_column($data, 'len');
+//    array_multisort($length, SORT_DESC, $data);
+    // 写到一起的话要反过来写(๑•̀ㅂ•́)و✧
+    array_multisort($length,SORT_DESC, $dict,SORT_ASC, $data);
+
     return $data[0]['dict'];
+
+    # 2019.09.03
+//    if(count($s) > 1000){
+//        $s = sub_str($s,0,1000);
+//    }
+//
+//    foreach($d as $k => $v){
+//        $s_arr = str_split($s);
+//        $is_in = 1;
+//        $new_arr = str_split($v);
+//        foreach($new_arr as $arrv){
+//            if(in_array($arrv,$s_arr)){
+//                $k = array_search($arrv,$s_arr);
+//                $s_arr = array_slice($s_arr,$k+1);
+//                // var_dump($s_arr);
+//            }else{
+//                $is_in = 0;
+//            }
+//        }
+//        if($is_in == 1){
+//            $data[] = [
+//                'length' => count($new_arr),
+//                'dict' => $v,
+//            ];
+//        }
+//
+//    }
+//    if(count($data) == 0){
+//        return "";
+//    }
+//    $dict = array_column($data,'dict');
+//    array_multisort($dict,SORT_ASC,$data);
+//    $length = array_column($data,'length');
+//    array_multisort($length,SORT_DESC,$data);
+//    return $data[0]['dict'];
 }
+
+$s = "aewfafwafjlwajflwajflwafj";
+$d = ["apple", "ewaf", "awefawfwaf", "awef", "awefe", "ewafeffewafewf"];
+var_dump(findLongestWord($s, $d));
