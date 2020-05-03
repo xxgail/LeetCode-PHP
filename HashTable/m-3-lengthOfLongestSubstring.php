@@ -1,7 +1,7 @@
 <?php
 /**
  * @Time: 2019/10/22 23:18
- * @DESC:
+ * @DESC: 3. 无重复字符的最长子串
  * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
  * @param $s
  * @return int
@@ -19,10 +19,7 @@ function lengthOfLongestSubstring($s){
         $result .= $s[$i];
         $len ++;
 
-//        $len = strlen($result); // 从运行速度上来看，$len的加减比计算长度快
-        if($len > $max){
-            $max = $len;
-        }
+        $max = $len > $max ? $len : $max;
     }
     return $max;
 }

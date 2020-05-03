@@ -10,7 +10,7 @@
  * @param $n
  * @return mixed
  */
-function lastRemaining($n) {//todo
+function lastRemaining($n) {
     # 通过。
     if($n < 3){return $n;}
     if($n%2 == 1){
