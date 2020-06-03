@@ -98,81 +98,81 @@
 //}
 
 //打开文件夹
-$dir = 'Array';
-$handler = opendir($dir);
-
-//遍历脚本文件夹下的所有文件
-while( (($filename = readdir($handler)) !== false) ){
-    //如果文件为php脚本文件
-    if( substr($filename,-4) == '.php' ){
-        //将文件包含进来
-        require_once($dir.'/'.$filename );
-    }
-}
-
-//关闭文件夹
-closedir($handler);
-
-$dir = 'String';
-$handler = opendir($dir);
-
-//遍历脚本文件夹下的所有文件
-while( (($filename = readdir($handler)) !== false) ){
-    //如果文件为php脚本文件
-    if( substr($filename,-4) == '.php' ){
-        //将文件包含进来
-        require_once($dir.'/'.$filename );
-    }
-}
-
-//关闭文件夹
-closedir($handler);
-
-$dir = 'BreadthFirstSearch';
-$handler = opendir($dir);
-
-//遍历脚本文件夹下的所有文件
-while( (($filename = readdir($handler)) !== false) ){
-    //如果文件为php脚本文件
-    if( substr($filename,-4) == '.php' ){
-        //将文件包含进来
-        require_once($dir.'/'.$filename );
-    }
-}
+//$dir = 'Array';
+//$handler = opendir($dir);
+//
+////遍历脚本文件夹下的所有文件
+//while( (($filename = readdir($handler)) !== false) ){
+//    //如果文件为php脚本文件
+//    if( substr($filename,-4) == '.php' ){
+//        //将文件包含进来
+//        require_once($dir.'/'.$filename );
+//    }
+//}
+//
+////关闭文件夹
+//closedir($handler);
+//
+//$dir = 'String';
+//$handler = opendir($dir);
+//
+////遍历脚本文件夹下的所有文件
+//while( (($filename = readdir($handler)) !== false) ){
+//    //如果文件为php脚本文件
+//    if( substr($filename,-4) == '.php' ){
+//        //将文件包含进来
+//        require_once($dir.'/'.$filename );
+//    }
+//}
 
 //关闭文件夹
-closedir($handler);
-
-$dir = 'DynamicProgramming';
-$handler = opendir($dir);
-
-//遍历脚本文件夹下的所有文件
-while( (($filename = readdir($handler)) !== false) ){
-    //如果文件为php脚本文件
-    if( substr($filename,-4) == '.php' ){
-        //将文件包含进来
-        require_once($dir.'/'.$filename );
-    }
-}
-
-//关闭文件夹
-closedir($handler);
-
-
-$dir = 'GreedyAlgorithm';
-$handler = opendir($dir);
-
-//遍历脚本文件夹下的所有文件
-while( (($filename = readdir($handler)) !== false) ){
-    //如果文件为php脚本文件
-    if( substr($filename,-4) == '.php' ){
-        //将文件包含进来
-        require_once($dir.'/'.$filename );
-    }
-}
-
-//关闭文件夹
-closedir($handler);
+//closedir($handler);
+//
+//$dir = 'BreadthFirstSearch';
+//$handler = opendir($dir);
+//
+////遍历脚本文件夹下的所有文件
+//while( (($filename = readdir($handler)) !== false) ){
+//    //如果文件为php脚本文件
+//    if( substr($filename,-4) == '.php' ){
+//        //将文件包含进来
+//        require_once($dir.'/'.$filename );
+//    }
+//}
+//
+////关闭文件夹
+//closedir($handler);
+//
+//$dir = 'DynamicProgramming';
+//$handler = opendir($dir);
+//
+////遍历脚本文件夹下的所有文件
+//while( (($filename = readdir($handler)) !== false) ){
+//    //如果文件为php脚本文件
+//    if( substr($filename,-4) == '.php' ){
+//        //将文件包含进来
+//        require_once($dir.'/'.$filename );
+//    }
+//}
+//
+////关闭文件夹
+//closedir($handler);
+//
+//
+//$dir = 'GreedyAlgorithm';
+//$handler = opendir($dir);
+//
+////遍历脚本文件夹下的所有文件
+//while( (($filename = readdir($handler)) !== false) ){
+//    //如果文件为php脚本文件
+//    if( substr($filename,-4) == '.php' ){
+//        //将文件包含进来
+//        require_once($dir.'/'.$filename );
+//    }
+//}
+//
+////关闭文件夹
+//closedir($handler);
 
 //$s = '14 - 14/3';
 
@@ -242,10 +242,10 @@ $start_time = microtime(true);
 //
 //$data = advantageCount($A,$B);
 
-$X = 1024;
-$Y = 1;
-$data = brokenCalc($X,$Y);
-var_dump($data);
+//$X = 1024;
+//$Y = 1;
+//$data = brokenCalc($X,$Y);
+//var_dump($data);
 //$beginWord = 'hit';
 //$endWord = 'cog';
 //$wordList = ['hot','dot','dog','lot','log','cog'];
@@ -255,6 +255,24 @@ var_dump($data);
 ////$data = str_diff($beginWord,$endWord);
 //var_dump($data);
 
+function buildArray($target, $n) {
+    $len = 0;
+    $res = [];
+    for($i = 1; $i <= $n; $i++){
+        if(in_array($i,$target)){
+            $res[] = "push";
+            $len++;
+        }else{
+            $res[] = "push";
+            $res[] = "pop";
+        }
+        if($len == count($target)){
+            return $res;
+        }
+    }
+}
+
+print_r(buildArray([2,3,4],4));
 $end_time = microtime(true);//获取程序执行结束的时间
 $total = $end_time - $start_time;   //计算差值
 var_dump($total);

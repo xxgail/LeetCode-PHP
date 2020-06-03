@@ -3,11 +3,11 @@
  * @Time: 2019/9/7 15:45
  * @DESC: 101
  * 给定一个二叉树，检查它是否是镜像对称的。
- * @param $a
+ * @param $root
  * @return bool
  */
-function isSymmetric($a){
-    return isMirror($a,$a);
+function isSymmetric($root){
+    return isMirror($root,$root);
 }
 
 function isMirror($t1, $t2)
