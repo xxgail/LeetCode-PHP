@@ -8,19 +8,35 @@
  * @return string
  */
 function longestCommonPrefix($strs) {
-    $short_str = $strs[0];
-    for ($i = 0; $i < count($strs); $i++){
-        if(strlen($strs[$i]) < strlen($short_str)){
-            $short_str = $strs[$i];
-        }
+//    $short_str = $strs[0];
+//    for ($i = 0; $i < count($strs); $i++){
+//        if(strlen($strs[$i]) < strlen($short_str)){
+//            $short_str = $strs[$i];
+//        }
+//    }
+//    for($i = 1; $i <= strlen($short_str) ; $i++){
+//        $per_str = substr($short_str,0,$i);
+//        foreach ($strs as $str) {
+//            if(substr($str,0,$i) != $per_str){
+//                return substr($per_str,0,$i - 1);
+//            }
+//        }
+//    }
+//    return $short_str;
+
+    if($strs == []){
+        return '';
     }
-    for($i = 1; $i <= strlen($short_str) ; $i++){
-        $per_str = substr($short_str,0,$i);
-        foreach ($strs as $str) {
-            if(substr($str,0,$i) != $per_str){
-                return substr($per_str,0,$i - 1);
+    $res = '';
+    $c = '';
+    for($i = 0; $i < strlen($strs[0]); $i++){
+        $c = $strs[0][$i];
+        for($j = 1; $j < count($strs); $j++){
+            if(strlen($strs[$j]) < $i || $strs[$j][$i] != $c){
+                break 2;
             }
         }
+        $res .= $c;
     }
-    return $short_str;
+    return $res;
 }
