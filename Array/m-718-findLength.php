@@ -45,7 +45,7 @@ function commonPrefix($A, $B, $startA, $startB, $len) {
     $res = 0;
     $k = 0;
     for ($i = 0; $i < $len; $i++) {
-        if (isset($A[$startA + $i]) && isset($B[$startB + $i]) && $A[$startA + $i] == $B[$startB + $i]) {
+        if ($A[$startA + $i] == $B[$startB + $i]) {
             $k++;
         } else {
             $k = 0;
