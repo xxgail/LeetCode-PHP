@@ -6,6 +6,7 @@
  * @return array
  * 时间复杂度O(n^2)
  * 空间复杂度O(logn)
+ * LeetCode Q 215
  */
 function quickSort($nums){
     _sort($nums,0,count($nums)-1);
