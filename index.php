@@ -255,24 +255,39 @@ $start_time = microtime(true);
 ////$data = str_diff($beginWord,$endWord);
 //var_dump($data);
 
-function buildArray($target, $n) {
-    $len = 0;
-    $res = [];
-    for($i = 1; $i <= $n; $i++){
-        if(in_array($i,$target)){
-            $res[] = "push";
-            $len++;
-        }else{
-            $res[] = "push";
-            $res[] = "pop";
-        }
-        if($len == count($target)){
-            return $res;
+//function buildArray($target, $n) {
+//    $len = 0;
+//    $res = [];
+//    for($i = 1; $i <= $n; $i++){
+//        if(in_array($i,$target)){
+//            $res[] = "push";
+//            $len++;
+//        }else{
+//            $res[] = "push";
+//            $res[] = "pop";
+//        }
+//        if($len == count($target)){
+//            return $res;
+//        }
+//    }
+//}
+//
+//print_r(buildArray([2,3,4],4));
+//$end_time = microtime(true);//获取程序执行结束的时间
+//$total = $end_time - $start_time;   //计算差值
+//var_dump($total);
+
+
+function integerBreak($n) {
+    $dp = array_fill(0,$n+1,0);
+    for ($i = 2; $i <= $n; $i++){
+        for ($j = 1; $j < $i; $j++){
+            $dp[$i] = max($dp[$i],max($j * ($i - $j), $j * $dp[$i-$j]));
         }
     }
+    return $dp[$n];
 }
 
-print_r(buildArray([2,3,4],4));
-$end_time = microtime(true);//获取程序执行结束的时间
-$total = $end_time - $start_time;   //计算差值
-var_dump($total);
+
+var_dump(integerBreak(2));
+var_dump(integerBreak(8));
