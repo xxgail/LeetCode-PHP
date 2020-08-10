@@ -18,24 +18,21 @@ function countBinarySubstrings($s) {
     if ($s == ""){
         return 0;
     }
-    $list = [];
-    $c = 1;
-    $p = 1;
-    while ($p < strlen($s)){
+    $res = $last = 0;
+    $c = $p = 1;
+    $len = strlen($s);
+    while ($p < $len){
         if ($s[$p] != $s[$p-1]){
-            $list[] = $c;
+            $res += min($last,$c);
+            $last = $c;
             $c = 1;
         }else{
             $c++;
         }
         $p++;
     }
-    $list[] = $c;
-    $ans = 0;
-    for ($i = 1; $i < count($list); $i++) {
-        $ans += min($list[$i], $list[$i - 1]);
-    }
-    return $ans;
+    $res += min($last,$c);
+    return $res;
 }
 
 $s = "00111011"; // list就是[2,3,1,2]
