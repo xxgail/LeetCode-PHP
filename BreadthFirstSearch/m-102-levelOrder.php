@@ -7,6 +7,7 @@
  * 逐层返回成数组
  * @param $root
  * @return array
+ * @link https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
  */
 function levelOrder($root) {
     $data = [];
@@ -66,4 +67,26 @@ function levelOrderOne($root){
         }
     }
     return $result;
+}
+
+
+function levelOrderBFS($root){
+    if ($root == null) return [];
+    $q = [$root];
+    $res = [];
+    while ($q){
+        $tmp = $item = [];
+        for ($i = 0; $i < count($q); $i++){
+            $item[] = $q[$i]->val;
+            if ($q[$i]->left != null){
+                $tmp[] = $q[$i]->left;
+            }
+            if ($q[$i]->right != null){
+                $tmp[] = $q[$i]->right;
+            }
+        }
+        $res[] = $item;
+        $q = $tmp;
+    }
+    return $res;
 }
