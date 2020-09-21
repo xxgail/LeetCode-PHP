@@ -63,3 +63,4 @@ function inOrders($root,&$data){
     $data[] = $root->val;
     inOrders($root->right,$data);
 }
+
