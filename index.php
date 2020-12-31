@@ -277,17 +277,26 @@ $start_time = microtime(true);
 //$total = $end_time - $start_time;   //计算差值
 //var_dump($total);
 
-
-function integerBreak($n) {
-    $dp = array_fill(0,$n+1,0);
-    for ($i = 2; $i <= $n; $i++){
-        for ($j = 1; $j < $i; $j++){
-            $dp[$i] = max($dp[$i],max($j * ($i - $j), $j * $dp[$i-$j]));
+function sortString($s) {
+    $hash = array_count_values(str_split($s));
+    ksort($hash);
+    $res = "";
+    $sort = true;
+    while ($hash) {
+        $tmp = "";
+        foreach ($hash as $k => $v) {
+            if ($v == 0) {
+                unset($hash[$k]);
+            }else {
+                $tmp .= $k;
+                $hash[$k]--;
+            }
         }
+        $res .= $sort ? $tmp : strrev($tmp);
+        $sort = !$sort;
     }
-    return $dp[$n];
+    return $res;
 }
 
-
-var_dump(integerBreak(2));
-var_dump(integerBreak(8));
+$s = "aaaabbbbcccc";
+var_dump(sortString($s));

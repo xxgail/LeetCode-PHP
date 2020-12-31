@@ -25,33 +25,27 @@ function ladderLength($beginWord, $endWord, $wordList) {
     $result = 1; # 类似于树的层数，从第一层查找
     $data[] = $beginWord;
     $count = 1; # 标记本层的元素个数
-    $next_count = 0; # 标记下一层的元素个数
     while ($data != null){
         $wordList = array_values(array_diff($wordList,$data)); # 去重
         $current_word = array_shift($data);
         $count --;
-
         for ($i = 0; $i < count($wordList); $i++){
             if(str_diff_count($current_word,$wordList[$i]) == 1){
                 if($wordList[$i] == $endWord){ # 如果找到该元素就直接跳出while循环
                     $result ++;
-                    break 2;
+                    return $result;
                 }
                 $data[] = $wordList[$i];
-                $next_count ++;
             }
         }
         if($count == 0){ # 该层循环结束之后就开始下一层
-            if($next_count == 0){ # 如果没有下一层元素，则直接返回0
-                return 0;
-                break;
-            }
             $result ++; # 层数加一
-            $count = $next_count; # 本层的元素个数更新
-            $next_count = 0; # 下一层的元素个数置零
+            $count = count($data); # 本层的元素个数更新
+            if($count == 0){ # 如果没有下一层元素，则直接返回0
+                return 0;
+            }
         }
     }
-    return $result;
 }
 
 /**
@@ -70,6 +64,8 @@ function str_diff_count($str1,$str2){
     }
     return $result;
 }
+
+var_dump(mb_strlen("aaa" ^ "aab"));
 
 
 #---

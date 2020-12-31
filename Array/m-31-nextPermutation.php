@@ -10,37 +10,19 @@
  * @link https://leetcode-cn.com/problems/next-permutation/
  */
 function nextPermutation(&$nums) {
-    
-    $left = '';
-    for($i = count($nums) - 1; $i > 0; $i--) {
-        if ($nums[$i] <= $nums[$i - 1]) {
-            continue;
-        } else {
-            $left = $i - 1;
-            break;
-        }
-    }
-    if($left === ''){
-        $nums = array_reverse($nums);
-    } else{
-        $right = '';
-        for ($i = count($nums) - 1; $i > $left; $i--){
-            if($nums[$i] <= $nums[$left]){
-                continue;
-            }else{
-                $right = $i;
-                break;
+    $len = count($nums);
+    for($i = $len-1; $i > 0; $i--) {
+        if($nums[$i] > $nums[$i-1]) {
+            for($j = $len-1; $j > $i-1; $j--) {
+                if($nums[$j] > $nums[$i-1]) {
+                    list($nums[$i-1],$nums[$j]) = [$nums[$j],$nums[$i-1]];
+                    $nums = array_merge(array_slice($nums,0,$i), array_reverse(array_slice($nums,$i)));
+                    return;
+                }
             }
         }
-        $a = $nums[$left];
-        $nums[$left] = $nums[$right];
-        $nums[$right] = $a;
-
-        $arr1 = array_slice($nums,0,$left + 1);
-        $arr2 = array_reverse(array_splice($nums,$left + 1));
-
-        $nums = array_merge($arr1,$arr2);
     }
+    sort($nums);
 }
 
 ## 136542
