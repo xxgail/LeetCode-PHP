@@ -24,6 +24,7 @@
     - Stack 栈
     - String 字符串
     - TreeNode 二叉树
+    - UnionFind 并查集
 
 - 文件：
     - x-xxx-xxx.php 方法文件
