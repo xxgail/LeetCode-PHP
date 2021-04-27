@@ -51,6 +51,5 @@ function rangeSumBST($root, $L, $R) {
         return rangeSumBST($root->left,$L,$R);
     }
 
-    $result = $root->val + rangeSumBST($root->left,$L,$R) + rangeSumBST($root->right,$L,$R);
-    return $result;
+    return $root->val + rangeSumBST($root->left,$L,$R) + rangeSumBST($root->right,$L,$R);
 }
